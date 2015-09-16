@@ -1,0 +1,31 @@
+#searchBarArea {
+    width: auto;
+    text-align: center;
+}
+
+.box {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#mostSearchedArea {
+    background-color: grey;
+    border-radius: 20%;
+    border: groove;
+    border-color: black;
+}
+
+#recipeOfTheDayArea {
+    background-color: darkgrey;
+    border: groove;
+    border-color: black;
+    border-radius: 20%;
+}
+
+.container {
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    text-align: center;
+}

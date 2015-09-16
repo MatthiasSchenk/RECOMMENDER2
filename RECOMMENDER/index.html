@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="de">
+    <meta charset="UTF-8">
+    <title>Food Recommender</title>
+    <link rel="stylesheet" type="text/css" href="res/style.css">
+    <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.tx3-tag-cloud.js" ></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link media="screen" rel="stylesheet" type="text/css" href="res/tx3-tag-cloud.css">
+</head>
+<body>
+    <div id="searchBarArea">
+        <input type="text" id="searchBar" placeholder="Suchbegriff eingeben...">
+        <button type="submit" id="searchBarButton">Suchen!</button>
+        <select>
+            <option value="sort1" id="dropdownone">Sortierung1</option>
+            <option value="sort2" id="dropdowntwo">Sortierung2</option>
+            <option value="sort3" id="dropdownthree">Sortierung3</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <section class="container" id="mostSearchedArea">
+            <ul id="tagCloud">
+                <li id="tagCloudElement1" data-weight="30"><a href="#">Pizza</a></li>
+                <li id="tagCloudElement2" data-weight="21"><a href="#">Italienisch</a></li>
+                <li id="tagCloudElement3" data-weight="15"><a href="#">Spaghetti</a></li>
+                <li id="tagCloudElement4" data-weight="12"><a href="#">Schweinebraten</a></li>
+                <li id="tagCloudElement5" data-weight="8"><a href="#">Soße</a></li>
+                <li id="tagCloudElement6" data-weight="3"><a href="#">Haxe</a></li>
+            </ul>
+        </section>
+
+        <section class="container" id="recipeOfTheDayArea">
+            RECIPE OF THE DAY
+        </section>
+    </div>
+</body>
+</html>
