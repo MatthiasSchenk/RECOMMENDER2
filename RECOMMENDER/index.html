@@ -21,6 +21,10 @@
     <link media="screen" rel="stylesheet" type="text/css" href="res/tx3-tag-cloud.css">
 </head>
 <body>
+
+    <div id="logoArea">
+        <img src="img/logo.png">
+    </div>
     <div id="searchBarArea">
         <input type="text" id="searchBar" placeholder="Suchbegriff eingeben...">
         <button type="submit" id="searchBarButton">Suchen!</button>
@@ -28,11 +32,12 @@
             <option value="sort1" id="dropdownone">Sortierung1</option>
             <option value="sort2" id="dropdowntwo">Sortierung2</option>
             <option value="sort3" id="dropdownthree">Sortierung3</option>
+
         </select>
     </div>
 
     <div class="box">
-        <section class="container" id="mostSearchedArea">
+        <section class="container centered" id="mostSearchedArea">
             <ul id="tagCloud">
                 <li id="tagCloudElement1" data-weight="30"><a href="#">Pizza</a></li>
                 <li id="tagCloudElement2" data-weight="21"><a href="#">Italienisch</a></li>
