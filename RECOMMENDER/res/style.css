@@ -1,5 +1,5 @@
 #searchBarArea {
-    background-color: darkgreen;
+    background-color: #D4A017;
     text-align: center;
     height: 100px;
     
@@ -37,14 +37,14 @@
 }
 
 #mostSearchedArea {
-    background-color: darkgreen;
+    background-color: #D4A017;
     border-radius: 20%;
     border: groove;
     border-color: black;
 }
 
 #recipeOfTheDayArea {
-    background-color: darkgreen;
+    background-color: #D4A017;
     border: groove;
     border-color: black;
     border-radius: 20%;
