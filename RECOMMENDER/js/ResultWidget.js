@@ -5,11 +5,14 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  $(this.target).empty();
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
 	    var doc = this.manager.response.response.docs[i];
-	    $(this.target).append(this.template(doc));
+	    // $(this.target).append(this.template(doc));
+	    console.log(doc);
 	  }
 	},
 
-	template: function (doc) {
+
+
+	/** template: function (doc) {
 	  var snippet = '';
 	  if (doc.text.length > 300) {
 	    snippet += doc.dateline + ' ' + doc.text.substring(0, 300);
@@ -24,7 +27,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  output += '<p id="links_' + doc.id + '" class="links"></p>';
 	  output += '<p>' + snippet + '</p></div>';
 	  return output;
-	}
+	} */
 
 });
 })(jQuery);

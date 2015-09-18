@@ -1,19 +1,41 @@
-var Manager;
+App.SolrManager = function() {
+    var that = {},
+    Manager,
 
-(function ($) {
+    init = function() {
+      console.log("MANAGER OBLINE");
 
-  $(function () {
-    Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://reuters-demo.tree.ewdev.ca:9090/reuters/'
-    });
-    Manager.init();
-    Manager.store.addByValue('q', '*:*');
-    Manager.doRequest();
+      return that;
+    },
 
-    Manager.addWidget(new AjaxSolr.ResultWidget({
-  		id: 'result',
-  		target: '#docs'
-	}));
-  });
+    search = function(query){
+    (function ($) {
 
-})(jQuery);
+      $(function () {
+        Manager = new AjaxSolr.Manager({
+          solrUrl: "http://localhost:8983/solr/recommender/select?q=title%3A+"+query+"&rows=100&wt=json&indent=true"
+          //solrUrl: 'http://localhost:8983/solr/recommender/select?q=*%3A*&rows=100&wt=json&indent=true'
+        });
+        Manager.init();
+        Manager.store.addByValue('q', '*:*');
+        Manager.doRequest();
+
+        Manager.addWidget(new AjaxSolr.ResultWidget({
+          id: 'result',
+          target: '#docs'
+        }));
+      });
+
+    })(jQuery);
+
+    };
+
+    that.init = init;
+    that.search = search;
+
+  return that;
+};
+
+
+
+

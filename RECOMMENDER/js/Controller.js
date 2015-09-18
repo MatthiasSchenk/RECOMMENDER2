@@ -1,8 +1,8 @@
-
 App.Controller = (function() {
     //Module
     var that = {},
-    tagCloud = null;
+    tagCloud = null,
+    solrManager = null;
 
     //Variablen
     var searchText,
@@ -13,6 +13,7 @@ App.Controller = (function() {
     init = function() {
         // Neue Module einbinden
         tagCloud = App.TagCloud.init();
+        solrManager = App.SolrManager().init();
 
  
         // --- MAIN PAGE ---
@@ -24,7 +25,8 @@ App.Controller = (function() {
             
             selector = document.getElementById("selector");
             selected = selector.options[selector.selectedIndex].value;
-
+            $( "#searchBarButton" ).trigger("search", [searchText]);
+            solrManager.search(searchText);
             console.log("Gesucht nach: "+ searchText+ " mit selector: " +selected );
 
         });
@@ -33,6 +35,7 @@ App.Controller = (function() {
             if ( event.which == 13 ) {
                 event.preventDefault();
                 $( "#searchBarButton" ).trigger("click");
+
         }
         });
 
