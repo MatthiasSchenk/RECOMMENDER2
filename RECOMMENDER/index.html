@@ -8,6 +8,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="lib/jquery.tx3-tag-cloud.js" ></script>
 
+    <script src="lib/core/Core.js"></script>
+    <script src="lib/core/AbstractManager.js"></script>
+    <script src="lib/core/Parameter.js"></script>
+    <script src="lib/core/ParameterStore.js"></script>
+    <script src="lib/managers/Manager.jquery.js"></script>
+
     <script src="js/App.js"></script>
     <script src="js/Controller.js"></script>
     <script src="js/TagCloud.js"></script>
@@ -18,7 +24,7 @@
     <div id="searchBarArea">
         <input type="text" id="searchBar" placeholder="Suchbegriff eingeben...">
         <button type="submit" id="searchBarButton">Suchen!</button>
-        <select>
+        <select id="selector">
             <option value="sort1" id="dropdownone">Sortierung1</option>
             <option value="sort2" id="dropdowntwo">Sortierung2</option>
             <option value="sort3" id="dropdownthree">Sortierung3</option>
