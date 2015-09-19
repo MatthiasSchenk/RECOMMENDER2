@@ -22,13 +22,13 @@ App.Controller = (function() {
 
         $( "#searchBarButton" ).click(function() {
             searchText = document.getElementById('searchBar').value;
-            
             selector = document.getElementById("selector");
             selected = selector.options[selector.selectedIndex].value;
             $( "#searchBarButton" ).trigger("search", [searchText]);
             solrManager.search(searchText);
             console.log("Gesucht nach: "+ searchText+ " mit selector: " +selected );
-
+            $("#mostSearchedArea").hide();
+            $("#recipeOfTheDayArea").hide();
         });
 
         $( "#searchBar" ).keypress(function( event ) {
