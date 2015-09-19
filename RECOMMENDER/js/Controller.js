@@ -14,7 +14,7 @@ App.Controller = (function() {
         // Neue Module einbinden
         tagCloud = App.TagCloud.init();
         solrManager = App.SolrManager().init();
-
+        $(".chzn-select").chosen();
  
         // --- MAIN PAGE ---
 

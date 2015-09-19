@@ -1,3 +1,7 @@
+#recipientSelection {
+    width: 80%;
+}
+
 #searchBarArea {
     background-color: #D4A017;
     text-align: center;
@@ -37,6 +41,24 @@
 }
 
 #mostSearchedArea {
+    margin-left: 18%;
+    width: 30%;
+    float: left;
+    height: 300px;
+}
+
+#recipeOfTheDayArea {
+    width: 30%;
+    float: left;
+    height: 300px;
+}
+
+#filterArea {
+    float: right;
+    width: 18%;
+}
+
+.container {
     background-color: #D4A017;
     border-radius: 20%;
     border: groove;
@@ -48,6 +70,8 @@
     border: groove;
     border-color: black;
     border-radius: 20%;
+    margin-left: 1%;
+    margin-top: 20px;
 }
 
 .container {

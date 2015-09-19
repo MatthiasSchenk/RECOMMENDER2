@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Food Recommender</title>
     <link rel="stylesheet" type="text/css" href="res/style.css">
+    <link rel="stylesheet" type="text/css" href="lib/chosen.css">
     <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="lib/jquery.tx3-tag-cloud.js" ></script>
-
+    <script type="text/javascript" src="lib/chosen.jquery.min.js"></script>
     <script src="lib/core/Core.js"></script>
     <script src="lib/core/AbstractManager.js"></script>
     <script src="lib/core/Parameter.js"></script>
@@ -22,8 +23,6 @@
     <script src="js/TagCloud.js"></script>
     <script src="js/ResultWidget.js"></script>
     <script src="js/SolrManager.js"></script>
-
-
 
     <link media="screen" rel="stylesheet" type="text/css" href="res/tx3-tag-cloud.css">
 </head>
@@ -57,6 +56,22 @@
 
         <section class="container" id="recipeOfTheDayArea">
             RECIPE OF THE DAY
+        </section>
+
+        <section class="container" id="filterArea">
+            <h1>Ohne...</h1>
+            <select data-placeholder="Zutat auswählen.." multiple class="chzn-select" id="recipientSelection">
+                <option value="0">Zwiebel</option>
+                <option value="2">Knoblauch</option>
+                <option value="3">Paprika</option>  
+                <option value="4">Tomaten</option>  
+                <option value="5">Lauch</option>  
+                <option value="6">Salz</option>  
+                <option value="7">Fleisch</option>  
+                <option value="8">Gemüse</option>  
+                <option value="9">Chili</option>  
+                <option value="10">Gurke</option>  
+            </select>
         </section>
     </div>
 
