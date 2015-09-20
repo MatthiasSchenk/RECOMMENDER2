@@ -15,6 +15,7 @@ App.Controller = (function() {
         tagCloud = App.TagCloud.init();
         solrManager = App.SolrManager().init();
         $(".chzn-select").chosen();
+
  
         // --- MAIN PAGE ---
 
@@ -29,6 +30,8 @@ App.Controller = (function() {
             console.log("Gesucht nach: "+ searchText+ " mit selector: " +selected );
             $("#mostSearchedArea").hide();
             $("#recipeOfTheDayArea").hide();
+            $("#filterArea").css("visibility", "visible");
+            $("#resultListArea").css("visibility", "visible");
         });
 
         $( "#searchBar" ).keypress(function( event ) {

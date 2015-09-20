@@ -58,7 +58,7 @@
 
 .container {
     background-color: #D4A017;
-    border-radius: 20%;
+    /*border-radius: 20%;*/
     border: groove;
     border-color: black;
 }
@@ -67,7 +67,6 @@
     background-color: #D4A017;
     border: groove;
     border-color: black;
-    border-radius: 20%;
     margin-left: 1%;
 }
 #recipientSelection {
@@ -123,13 +122,14 @@
 }
 
 #filterArea {
+    visibility: hidden;
     float: right;
     width: 18%;
+    background-color: red;
 }
 
 .container {
     background-color: #D4A017;
-    border-radius: 20%;
     border: groove;
     border-color: black;
 }
@@ -138,8 +138,25 @@
     background-color: #D4A017;
     border: groove;
     border-color: black;
-    border-radius: 20%;
     margin-left: 1%;
+}
+
+#resultListArea {
+    width: 80%;
+    visibility: hidden;
+}
+
+.result {
+    height: 150px;
+    background-color: green;
+}
+
+.picInResult {
+    width: 200px;
+    height: 120px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 input[type=range] {
