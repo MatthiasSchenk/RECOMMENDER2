@@ -9,13 +9,41 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = this.manager.response.response.docs[i];
 	    // $(this.target).append(this.template(doc));
 	    console.log(doc);
+
+	    //DATA
+
 	    var title = doc.title[0];
+	    var rating = doc.userrating[0] / doc.numuserratings[0];
+	    var duration = doc.recipetime[0];
+
+
+	    //STRINGS
+
+	    if(duration != 0){
+	    	var durationString = "Dauer: "+duration+" min.";
+	    }else{
+	    	var durationString = "Dauer: keine Angabe";
+	    }
+	    
+	   	if(rating > 0){
+	    	var ratingString = "Rating: "+rating;
+	    }else{
+	    	var ratingString = "Rating: keine Angabe";
+	    }
+
+	    //HTML ELEMENTS
 
 	  	var $div = $("<div></div>", {id: "foo", class: "result"});
 		$("#resultListArea").append($div);
 		//TITEL
 	  	var $title = $("<p>", {id: "recipeTitle", class: "recipeListTitle", text: title});
 		$($div).append($title);
+		//DAUER
+		var $duration = $("<p>", {id: "recipeDuration", class: "recipeListDuration", text: durationString});
+		$($div).append($duration);
+		//RATING
+		var $rating = $("<p>", {id: "recipeRating", class: "recipeListRating", text: ratingString});
+		$($div).append($rating);
 
 		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
