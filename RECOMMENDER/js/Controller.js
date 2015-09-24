@@ -18,6 +18,7 @@ App.Controller = (function() {
         solrManager = App.SolrManager().init();
         $(".chzn-select").chosen();
 
+        
  
         // --- MAIN PAGE ---
 
