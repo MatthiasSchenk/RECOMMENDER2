@@ -3,7 +3,7 @@ App.Controller = (function() {
     var that = {},
     tagCloud = null,
     solrManager = null;
-    
+
 
 
     //Variablen
@@ -18,6 +18,7 @@ App.Controller = (function() {
         solrManager = App.SolrManager().init();
         $(".chzn-select").chosen();
 
+        
  
         // --- MAIN PAGE ---
 
@@ -33,6 +34,7 @@ App.Controller = (function() {
             $("#mostSearchedArea").hide();
             $("#recipeOfTheDayArea").hide();
             $("#filterArea").css("visibility", "visible");
+            $("#mostSearchedArea2").css("visibility", "visible");
             $("#resultListArea").css("visibility", "visible");
         });
 

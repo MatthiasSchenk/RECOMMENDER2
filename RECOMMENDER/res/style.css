@@ -115,6 +115,22 @@
     height: 300px;
 }
 
+#mostSearchedArea2 {
+    margin-left: 80%;
+    margin-top: 0.5%;
+    width: 18%;
+    float: right;
+    height: 300px;
+    visibility: hidden;
+}
+
+.TagCloudResultPage {
+    background-color: #D4A017;
+    border: groove;
+    border-color: black;
+    
+}
+
 #recipeOfTheDayArea {
     width: 30%;
     float: left;
@@ -168,6 +184,10 @@
     margin-left: 15px;
 }
 
+
+
+
+
 .recipeListTitle {
     width: 800px;
     height: 35px;
@@ -201,6 +221,7 @@
     font-style: italic;
     text-align: left;
 }
+
 
 input[type=range] {
     /*removes default webkit styles*/

@@ -2,7 +2,7 @@
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	
 	afterRequest: function () {
-		
+
 	  $(this.target).empty();
 	  console.log("sers");
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
@@ -48,6 +48,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
+
 	  }
 	  expandClickedRecipe();
 	},
