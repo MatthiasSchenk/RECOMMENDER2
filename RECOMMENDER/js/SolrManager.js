@@ -12,6 +12,7 @@ App.SolrManager = function() {
     (function ($) {
 
       $(function () {
+        
         Manager = new AjaxSolr.Manager({
           solrUrl: "http://localhost:8983/solr/recommender/select?q=title%3A+"+query+"&rows=100&wt=json&indent=true"
           //solrUrl: 'http://localhost:8983/solr/recommender/select?q=*%3A*&rows=100&wt=json&indent=true'
@@ -19,7 +20,7 @@ App.SolrManager = function() {
         Manager.init();
         Manager.store.addByValue('q', '*:*');
         Manager.doRequest();
-        
+
 
         Manager.addWidget(new AjaxSolr.ResultWidget({
           id: 'result',
