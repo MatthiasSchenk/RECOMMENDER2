@@ -3,6 +3,7 @@ App.Controller = (function() {
     var that = {},
     tagCloud = null,
     solrManager = null;
+    
 
 
     //Variablen

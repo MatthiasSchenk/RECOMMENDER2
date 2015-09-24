@@ -2,6 +2,7 @@
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	
 	afterRequest: function () {
+		
 	  $(this.target).empty();
 	  console.log("sers");
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
@@ -9,10 +10,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    // $(this.target).append(this.template(doc));
 	    console.log(doc);
 
-	  	//$("#resultListArea").append("<div>hello world</div>");
-
 	  	var $div = $("<div>", {id: "foo", class: "result"});
 		$("#resultListArea").append($div);
+
 	  }
 	},
 
