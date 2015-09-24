@@ -149,6 +149,7 @@
 .result {
     height: 150px;
     background-color: green;
+    margin-bottom: 10px;
 }
 
 .picInResult {
