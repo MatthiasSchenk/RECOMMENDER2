@@ -4,6 +4,7 @@ App.Controller = (function() {
     tagCloud = null,
     solrManager = null;
 
+
     //Variablen
     var searchText,
     selector,

@@ -19,6 +19,7 @@ App.SolrManager = function() {
         Manager.init();
         Manager.store.addByValue('q', '*:*');
         Manager.doRequest();
+        
 
         Manager.addWidget(new AjaxSolr.ResultWidget({
           id: 'result',
