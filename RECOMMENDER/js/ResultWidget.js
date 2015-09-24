@@ -11,11 +11,13 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    console.log(doc);
 	    var title = doc.title[0];
 
-	  	var $div = $("<div></div>", {id: "foo", class: "result",
-  		text: title});
-
-
+	  	var $div = $("<div></div>", {id: "foo", class: "result"});
 		$("#resultListArea").append($div);
+		//TITEL
+	  	var $title = $("<p>", {id: "recipeTitle", class: "recipeListTitle", text: title});
+		$($div).append($title);
+
+		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
 	  }
