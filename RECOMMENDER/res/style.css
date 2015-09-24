@@ -149,7 +149,15 @@
 .result {
     height: 150px;
     background-color: green;
-    margin-bottom: 5px;
+
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.expandRecipe {
+    height: 200px;
+    background-color: red;
+
 }
 
 .picInResult {

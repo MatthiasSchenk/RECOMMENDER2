@@ -11,13 +11,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    console.log(doc);
 	    var title = doc.title[0];
 
-
-
 	  	var $div = $("<div></div>", {id: "foo", class: "result",
   		text: title});
-		$("#resultListArea").append($div);
 
+
+		$("#resultListArea").append($div);
+		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
+		$("#resultListArea").append($div2);
 	  }
+	  expandClickedRecipe();
 	},
 
 
@@ -40,4 +42,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	} */
 
 });
+	var expandClickedRecipe = function(){
+	  	$(".expandRecipe").hide();
+	  	$(".result").click(function(){
+	  		$(this).next(".expandRecipe").slideToggle(600);
+	  	})
+	  }
 })(jQuery);
