@@ -165,6 +165,15 @@
 .result {
     height: 150px;
     background-color: green;
+
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.expandRecipe {
+    height: 200px;
+    background-color: red;
+
 }
 
 .picInResult {
@@ -176,6 +185,18 @@
 }
 
 
+
+
+
+.recipeListTitle {
+    width: 300px;
+    height: 40px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-style: italic;
+}
 
 
 input[type=range] {

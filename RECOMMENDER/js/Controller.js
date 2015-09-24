@@ -48,6 +48,7 @@ App.Controller = (function() {
 
         $( "#tagCloud").on( "tagClicked", function(event, tag) {
             clickedTag = tag;
+            $("#searchBar").val(clickedTag);
             console.log(clickedTag);
         });
 
