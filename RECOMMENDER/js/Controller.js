@@ -3,7 +3,7 @@ App.Controller = (function() {
     var that = {},
     tagCloud = null,
     solrManager = null;
-    
+
 
 
     //Variablen
@@ -33,6 +33,7 @@ App.Controller = (function() {
             $("#mostSearchedArea").hide();
             $("#recipeOfTheDayArea").hide();
             $("#filterArea").css("visibility", "visible");
+            $("#mostSearchedArea2").css("visibility", "visible");
             $("#resultListArea").css("visibility", "visible");
         });
 
