@@ -8,7 +8,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = this.manager.response.response.docs[i];
 	    // $(this.target).append(this.template(doc));
 	    console.log(doc);
-	    
+
+	  	//$("#resultListArea").append("<div>hello world</div>");
+
+	  	var $div = $("<div>", {id: "foo", class: "result"});
+		$("#resultListArea").append($div);
 	  }
 	},
 
