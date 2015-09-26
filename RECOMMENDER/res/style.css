@@ -37,12 +37,6 @@
     margin-top: 20px;
 }
 
-#mostSearchedArea {
-    margin-left: 18%;
-    width: 30%;
-    float: left;
-    height: 300px;
-}
 
 #recipeOfTheDayArea {
     width: 30%;
@@ -113,20 +107,23 @@
 }
 
 #filterArea {
-    width: 250px;
+    width: 18%;
     height: 300px;
+    position: absolute;
+    right: 0;
     visibility: hidden;
-    float: right;
+    
     background-color: #0A4C6C;    
 }
 
 .TagCloudResultPage {
-    float: right;
+    width: 18%;
+    height: 300px;
     position: absolute;
-    margin-top: 23%;
-    margin-left: 79.5%;
+    right: 0;
+    top: 100%;
     visibility: hidden;
-
+    
     background-color: #0A4C6C;
     border: groove;
     border-color: black;
@@ -218,7 +215,7 @@
     font-size: 20px;
     font-style: italic;
     text-align: left;
-    
+
 }
 
 
