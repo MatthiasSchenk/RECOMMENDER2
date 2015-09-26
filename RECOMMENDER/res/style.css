@@ -157,7 +157,7 @@
 }
 
 .result {
-    height: 150px;
+    height: 155px;
     background-color: #D4A017;
     font-family: helvetica;
     margin-top: 10px;
@@ -202,14 +202,23 @@
 }
 
 .recipeListRating {
-    width: 300px;
-    height: 40px;
-
-    margin-top: 20px;
+    
     margin-left: 250px;
     font-size: 20px;
     font-style: italic;
     text-align: left;
+}
+
+.recipeListIngredients {
+    width: 300px;
+    height: 40px;
+
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-style: italic;
+    text-align: left;
+    
 }
 
 
