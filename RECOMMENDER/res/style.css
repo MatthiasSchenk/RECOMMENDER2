@@ -194,6 +194,7 @@
     font-size: 20px;
     font-style: italic;
     text-align: left;
+    float: left;
 }
 
 .recipeListRating {
@@ -202,6 +203,36 @@
     font-size: 20px;
     font-style: italic;
     text-align: left;
+    float: left;
+}
+
+.recipeListAlc{
+    margin-top: -56px;
+    margin-left: 850px;
+    font-size: 10px;
+    font-style: italic;
+    text-align: left;  
+    float: left;
+
+
+}
+
+.recipeListDiabetus{
+    margin-top: -20px;
+    margin-left: 850px;
+    font-size: 10px;
+    font-style: italic;
+    text-align: left;
+
+
+}
+
+.recipeListLactose{
+    margin-left: 850px;
+    font-size: 10px;
+    font-style: italic;
+    text-align: left;
+
 }
 
 .recipeListIngredients {
