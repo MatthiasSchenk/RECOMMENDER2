@@ -15,16 +15,17 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var title = doc.title[0];
 	    var rating = doc.userrating[0] / doc.numuserratings[0];
 	    var duration = doc.recipetime[0];
+	    var instructions = doc.instructions[0];
 
 
 	    //STRINGS
-
+	    	//duration
 	    if(duration != 0){
 	    	var durationString = "Dauer: "+duration+" min.";
 	    }else{
 	    	var durationString = "Dauer: keine Angabe";
 	    }
-	    
+	    	//rating
 	   	if(rating > 0){
 	    	var ratingString = "Rating: "+rating;
 	    }else{
@@ -44,7 +45,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//RATING
 		var $rating = $("<p>", {id: "recipeRating", class: "recipeListRating", text: ratingString});
 		$($div).append($rating);
-
+		
 		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);

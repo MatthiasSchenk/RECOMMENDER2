@@ -216,11 +216,13 @@
     height: 40px;
 
     margin-top: 20px;
-    margin-left: 250px;
+    margin-left: 350px;
     font-size: 20px;
     font-style: italic;
     text-align: left;
 }
+
+
 
 
 input[type=range] {
