@@ -15,9 +15,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var title = doc.title[0];
 	    var rating = doc.userrating[0] / doc.numuserratings[0];
 	    var duration = doc.recipetime[0];
-	    var ingredients = doc.ingredientname[0];
-
-
+	    var ingredients = doc.ingredientname;
+	    var ingredient = "Zutaten: ";
+	    var portionvalues = doc.portionvalues;
+	    var portiontypes = doc.portiontypes;
+	    console.log(ingredients);
 
 	    //STRINGS
 
@@ -33,11 +35,13 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	var ratingString = "Rating: keine Angabe";
 	    }
 
-	    if(ingredients != 0) {
-	    	var ingredient = "Zutaten: "+ingredients;
-	  	}else{
-	  		var ingredient = "keine Zutaten notwendig.";
-	  	}
+	    for(var j=0; j<ingredients.length; j++){
+	    	ingredient = ingredient + ingredients[j] /*+ ": " + portionvalues[j] + " " + portiontypes[j] + "/n"*/;
+	    }
+	    console.log(ingredient);
+
+
+	    
 
 	    //HTML ELEMENTS
 
