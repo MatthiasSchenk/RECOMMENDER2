@@ -15,7 +15,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var title = doc.title[0];
 	    var rating = doc.userrating[0] / doc.numuserratings[0];
 	    var duration = doc.recipetime[0];
-	    var instructions = doc.instructions[0];
+	    var ingredients = doc.ingredientname[0];
+
 
 
 	    //STRINGS
@@ -31,6 +32,12 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
+
+	    if(ingredients != 0) {
+	    	var ingredient = "Zutaten: "+ingredients;
+	  	}else{
+	  		var ingredient = "keine Zutaten notwendig.";
+	  	}
 
 	    //HTML ELEMENTS
 
@@ -49,6 +56,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
+		//ZUTATEN
+		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
+		$($div).append($ingredients);
 
 	  }
 	  expandClickedRecipe();

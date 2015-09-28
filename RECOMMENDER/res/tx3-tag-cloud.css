@@ -4,12 +4,12 @@ ul.tx3-tag-cloud li {
 display: block;
 float: left;
 list-style: none;
-margin-right: 4px;
+margin-right: 2px;
 }
 ul.tx3-tag-cloud li a {
 display: block;
 text-decoration: none;
-color: #c9c9c9;
+color: #835F00;
 padding: 3px 10px;
 }
 ul.tx3-tag-cloud li a:hover {

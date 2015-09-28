@@ -37,24 +37,19 @@
     margin-top: 20px;
 }
 
-#mostSearchedArea {
-    margin-left: 18%;
-    width: 30%;
-    float: left;
-    height: 300px;
-}
 
 #recipeOfTheDayArea {
     width: 30%;
     float: left;
     height: 300px;
+
+    background-color: #D4A017;
+    border: groove;
+    border-color: black;
+    margin-left: 1%;
 }
 
-#filterArea {
-    float: right;
-    width: 18%;
-    height: 300px;
-}
+
 
 .container {
     background-color: #D4A017;
@@ -63,12 +58,6 @@
     border-color: black;
 }
 
-#recipeOfTheDayArea {
-    background-color: #D4A017;
-    border: groove;
-    border-color: black;
-    margin-left: 1%;
-}
 #recipientSelection {
     width: 80%;
 }
@@ -109,39 +98,41 @@
 }
 
 #mostSearchedArea {
-    margin-left: 18%;
     width: 30%;
-    float: left;
     height: 300px;
+
+    margin-left: 18%;
+    float: left;
+    
 }
 
-#mostSearchedArea2 {
-    margin-left: 80%;
-    margin-top: 0.5%;
+#filterArea {
     width: 18%;
-    float: right;
     height: 300px;
+    position: absolute;
+    right: 0;
     visibility: hidden;
+    
+    background-color: #0A4C6C;    
 }
 
 .TagCloudResultPage {
-    background-color: #D4A017;
+    width: 18%;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    visibility: hidden;
+    
+    background-color: #0A4C6C;
     border: groove;
     border-color: black;
-    
 }
 
 #recipeOfTheDayArea {
     width: 30%;
     float: left;
     height: 300px;
-}
-
-#filterArea {
-    visibility: hidden;
-    float: right;
-    width: 18%;
-    background-color: red;
 }
 
 .container {
@@ -163,17 +154,16 @@
 }
 
 .result {
-    height: 150px;
-    background-color: green;
-
+    height: 155px;
+    background-color: #D4A017;
+    font-family: helvetica;
     margin-top: 10px;
     cursor: pointer;
 }
 
 .expandRecipe {
     height: 200px;
-    background-color: red;
-
+    background-color: #146186;
 }
 
 .picInResult {
@@ -184,14 +174,11 @@
     margin-left: 15px;
 }
 
-
-
-
-
 .recipeListTitle {
     width: 800px;
     height: 35px;
-    float: left;
+
+    
     margin-top: 20px;
     margin-left: 10px;
     font-size: 35px;
@@ -212,14 +199,23 @@
 }
 
 .recipeListRating {
+    
+    margin-left: 250px;
+    font-size: 20px;
+    font-style: italic;
+    text-align: left;
+}
+
+.recipeListIngredients {
     width: 300px;
     height: 40px;
 
     margin-top: 20px;
-    margin-left: 350px;
+    margin-left: 10px;
     font-size: 20px;
     font-style: italic;
     text-align: left;
+
 }
 
 
