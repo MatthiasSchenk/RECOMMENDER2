@@ -58,7 +58,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		$("#resultListArea").append($div2);
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
-		$($div).append($ingredients);
+		$($div2).append($ingredients);
 
 	  }
 	  expandClickedRecipe();
@@ -85,9 +85,12 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 });
 	var expandClickedRecipe = function(){
+		$(".recipeListIngredients").hide();
 	  	$(".expandRecipe").hide();
+
 	  	$(".result").click(function(){
 	  		$(this).next(".expandRecipe").slideToggle(600);
+	  		$(this).next(".expandRecipe").children().toggle();
 	  	})
 	  }
 })(jQuery);

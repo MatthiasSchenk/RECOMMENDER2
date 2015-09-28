@@ -2,12 +2,6 @@
     width: 80%;
 }
 
-#searchBarArea {
-    background-color: #FF007F;
-    text-align: center;
-    height: 100px;
-    
-}
 
 #searchBar {
     margin-top: 22px;
@@ -104,6 +98,10 @@
     margin-left: 18%;
     float: left;
     
+}
+
+#recipeIngredients{
+
 }
 
 #filterArea {
@@ -208,14 +206,12 @@
 
 .recipeListIngredients {
     width: 300px;
-    height: 40px;
-
-    margin-top: 20px;
+    height: 0px;
+    margin-top: 0px;
     margin-left: 10px;
     font-size: 20px;
     font-style: italic;
     text-align: left;
-
 }
 
 
