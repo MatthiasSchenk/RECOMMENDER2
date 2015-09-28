@@ -18,9 +18,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    var ingredients = doc.ingredientname;
 	    var ingredient = "Zutaten: ";
-	    var portionvalues = doc.portionvalues;
-	    var portiontypes = doc.portiontypes;
+	    var portionvalues = doc.portionvalue;
+	    var portiontypes = doc.portiontype;
 	    console.log(ingredients);
+	    console.log(portionvalues);	
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
@@ -42,11 +43,17 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	var ratingString = "Rating: keine Angabe";
 	    }
 
+	    
+
 
 	    for(var j=0; j<ingredients.length; j++){
-	    	ingredient = ingredient + ingredients[j] /*+ ": " + portionvalues[j] + " " + portiontypes[j] + "/n"*/;
+
+	    	ingredient = ingredient + ingredients[j] + ": " + portionvalues[j] + " " + portiontypes[j] + "\n";
+
 	    }
 	    console.log(ingredient);
+
+	
 
 
 	    
@@ -100,6 +107,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
 		$($div2).append($ingredients);
+		
+		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
+		$($div2).append($portionvalues);
+		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
+		$($div2).append($portiontypes);
 
 	  }
 	  expandClickedRecipe();
