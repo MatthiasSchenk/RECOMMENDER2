@@ -19,6 +19,12 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
+
+	    var instructions = doc.instructions[0];
+	    // instructions.replace("<br />", " ");
+
+
+
 	    console.log(ingredients);
 	    console.log(portionvalues);	
 
@@ -40,19 +46,26 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
+	    	//instructions
+	    if(instructions[0] != ""){
+	    	var instructionString = "Anleitung: "+instructions;
+	    }else{
+	    	var instructionString = "leider keine Anleitung vorhanden";
+	    }
+	    
+		
 
 	    
 
-
+	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j]+", \r\n";
+	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] +"";
 
 	    }
 	    console.log(ingredient);
 
-	
-
+	    	
 
 	    
 	    	//alk
@@ -105,23 +118,27 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
 		$($div2).append($ingredients);
-		
+		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
 		$($div2).append($portionvalues);
+		//PORTIONTYPES
 		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
 		$($div2).append($portiontypes);
+		//INSTRUCTIONS
+		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", text: instructionString});
+		$($div2).append($instructions);
 
 	  }
 	  expandClickedRecipe();
 	},
 
 
-
-
-
 });
+
+
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
+		$(".recipeListInstructions").hide();
 	  	$(".expandRecipe").hide();
 
 	  	$(".result").click(function(){
@@ -129,4 +146,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		$(this).next(".expandRecipe").children().toggle();
 	  	})
 	  }
+
+	    	  
 })(jQuery);
