@@ -146,7 +146,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  console.log(counter + " Ergebnisse");
 	},
 
-
+});
 
 
 
