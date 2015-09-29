@@ -23,19 +23,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
-<<<<<<< HEAD
 
 	    var instructions = doc.instructions[0];
 	    // instructions.replace("<br />", " ");
 
-
-
-	    console.log(ingredients);
-	    console.log(portionvalues);	
-=======
-	    //console.log(ingredients);
-	    //console.log(portionvalues);	
->>>>>>> da5a27ed6cd9bb291181e4e3da86a8a55a2dd26f
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
