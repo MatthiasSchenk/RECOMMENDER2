@@ -13,14 +13,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    docArray.push(dox);
 	  }
 	    docArray.sort(sortRecipes);
+	    checkTime();
+		console.log(docArray.length);
 	  	counter++;
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
-	 	for(var m = 0; m < this.manager.response.response.docs.length; m++){
+	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
 	    //DATA
-
 	    var title = doc.title[0];
 	    var rating = doc.userrating[0];
 	    var duration = doc.recipetime[0];
@@ -141,16 +142,21 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 });
 
+	var checkTime = function(){
+		var time = document.getElementById("range").value;
+		console.log(docArray[0].recipetime);
+		for(var o = 0; o < docArray.length-1; o++){
+			if(docArray[o].recipetime != 30){
+				console.log(docArray[o].recipetime);
+				docArray.splice(o, o+1);
+			}
+		}
+	}
 
-
-
-});
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
         var selected = selector.options[selector.selectedIndex].value;
-        console.log("SORTIERLISTE", selected);
-        console.log("RATING", docArray[0].userrating);
 
         if(selected == "Bewertung - absteigend"){
         	if (thisObject.userrating < thatObject.userrating){
@@ -187,6 +193,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 			}
 				return 0;
         }
+
+        if(selected == "Meistbewertet"){
+        	if (thisObject.numuserratings < thatObject.numuserratings){
+			return 1;
+			}else if (thisObject.numuserratings > thatObject.numuserratings){
+				return -1;
+			}
+				return 0;
+        }
         }
 	
 	var expandClickedRecipe = function(){
@@ -201,4 +216,4 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  }
 
 	    	  
-//})(jQuery);
+})(jQuery);
