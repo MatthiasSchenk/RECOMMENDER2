@@ -12,7 +12,6 @@ App.SolrManager = function() {
     (function ($) {
 
       $(function () {
-        
         Manager = new AjaxSolr.Manager({
           solrUrl: "http://localhost:8983/solr/recommender/select?q="+query+"&rows=1000&wt=json&indent=true"
           //solrUrl: 'http://localhost:8983/solr/recommender/select?q=*%3A*&rows=100&wt=json&indent=true'

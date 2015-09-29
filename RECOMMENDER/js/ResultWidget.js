@@ -189,8 +189,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
         }
         }
 	
-
-
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
 		$(".recipeListInstructions").hide();
@@ -203,4 +201,4 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  }
 
 	    	  
-})(jQuery);
+//})(jQuery);
