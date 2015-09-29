@@ -20,7 +20,8 @@ App.Controller = (function() {
         $(".chzn-select").chosen();
 
 
-        
+
+
  
         // --- MAIN PAGE ---
 
@@ -57,6 +58,12 @@ App.Controller = (function() {
         });
 
         $( "#tagCloud").on( "tagClicked", function(event, tag) {
+            clickedTag = tag;
+            $("#searchBar").val(clickedTag);
+            console.log(clickedTag);
+        });
+
+        $( "#tagCloud2").on( "tagClicked", function(event, tag) {
             clickedTag = tag;
             $("#searchBar").val(clickedTag);
             console.log(clickedTag);

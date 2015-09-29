@@ -1,11 +1,16 @@
 App.TagCloud = (function() {
     var that = {},
-	wordArray = ["Pizza", "Italienisch", "Spaghetti", "Scheinebraten", "Grillen", "Backen", "haha"],
+	names = ["Tag", "Cloud", "mit", "Array", "is", "so", "EASY JUNGE"],
+	weights = [10,12,14,16,18,20,30],
 	clickedTag,
 
     init = function() {
 
     	var ul = document.getElementById('tagCloud');
+
+    	fillCloud(names, weights);
+
+
     	var ul2 = document.getElementById('tagCloud2');
 
     	//Click listener
@@ -38,6 +43,14 @@ App.TagCloud = (function() {
 		    $("#tagCloud2").tx3TagCloud({
 		    	multiplier: 2
 		    });
+		}
+
+		function fillCloud(names, weights){
+			for (var i = 0; i < names.length; i++) {
+				$("#tagCloud").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+			};
+
+
 		}
 
 		
