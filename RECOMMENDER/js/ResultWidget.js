@@ -153,6 +153,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
 	},
+});
+
 
 });
 
