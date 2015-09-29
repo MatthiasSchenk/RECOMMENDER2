@@ -129,7 +129,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
 		//ZUTATEN
-		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
+		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", text: ingredient});
 		$($div2).append($ingredients);
 		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
@@ -152,7 +152,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-});
+
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
