@@ -26,11 +26,12 @@ App.Controller = (function() {
 
         $( "#searchBarButton" ).click(function() {
             searchText = document.getElementById('searchBar').value;
+            var query = formatQuery(searchText);
             selector = document.getElementById("selector");
             selected = selector.options[selector.selectedIndex].value;
-            $( "#searchBarButton" ).trigger("search", [searchText]);
-            solrManager.search(searchText);
-            console.log("Gesucht nach: "+ searchText+ " mit selector: " +selected );
+            $( "#searchBarButton" ).trigger("search", [query]);
+            solrManager.search(query);
+            console.log("Gesucht nach: "+ query+ " mit selector: " +selected );
             $("#mostSearchedArea").hide();
             $("#recipeOfTheDayArea").hide();
             $("#filterArea").css("visibility", "visible");
@@ -51,6 +52,17 @@ App.Controller = (function() {
             $("#searchBar").val(clickedTag);
             console.log(clickedTag);
         });
+
+        //Methods
+
+        var formatQuery = function(text){
+            var result = text;
+            result = result.replace(" ", "+");
+
+
+
+            return result;
+        }
 
     };
 

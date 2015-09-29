@@ -3,7 +3,7 @@ App.SolrManager = function() {
     Manager,
 
     init = function() {
-      console.log("MANAGER OBLINE");
+      console.log("MANAGER ONLINE");
 
       return that;
     },
