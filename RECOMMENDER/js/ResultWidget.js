@@ -1,5 +1,5 @@
+var docArray = [];
 var counter = 0;
-
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
@@ -9,21 +9,34 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  $(this.target).empty();
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
+	    var dox = this.manager.response.response.docs[i];
+	    docArray.push(dox);
+	  }
+	    docArray.sort(sortRecipes);
 	  	counter++;
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
+	 	for(var m = 0; m < this.manager.response.response.docs.length; m++){
+	    var doc = docArray[m];
 	    //DATA
 
 	    var title = doc.title[0];
+
 	    var rating = doc.userrating[0] / 10;
+
+
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
-	    console.log(rating);
+
+
+	    var instructions = doc.instructions[0];
+	    // instructions.replace("<br />", " ");
+
 
 
 	    var alk = (!doc.antialc[0]);
@@ -44,19 +57,26 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
+	    	//instructions
+	    if(instructions[0] != ""){
+	    	var instructionString = "Anleitung: "+instructions;
+	    }else{
+	    	var instructionString = "leider keine Anleitung vorhanden";
+	    }
+	    
+		
 
 	    
 
-
+	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + ingredients[j] + ": " + portionvalues[j] + " " + portiontypes[j] + "\n";
+	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] +"";
 
 	    }
 
 
-	
-
+	    	
 
 	    
 	    	//alk
@@ -109,11 +129,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
 		$($div2).append($ingredients);
-		
+		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
 		$($div2).append($portionvalues);
+		//PORTIONTYPES
 		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
 		$($div2).append($portiontypes);
+		//INSTRUCTIONS
+		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", text: instructionString});
+		$($div2).append($instructions);
 
 	  }
 	  expandClickedRecipe();
@@ -121,12 +145,61 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	},
 
 
+});
+
 
 
 
 });
+
+	var sortRecipes = function(thisObject, thatObject){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
+        console.log("SORTIERLISTE", selected);
+        console.log("RATING", docArray[0].userrating);
+
+        if(selected == "Bewertung - absteigend"){
+        	if (thisObject.userrating < thatObject.userrating){
+			return 1;
+			}else if (thisObject.userrating > thatObject.userrating){
+				return -1;
+			}
+				return 0;
+        }
+
+        if(selected == "Bewertung - aufsteigend"){
+        	if (thisObject.userrating > thatObject.userrating){
+			return 1;
+			}else if (thisObject.userrating < thatObject.userrating){
+				return -1;
+			}
+				return 0;
+        }
+
+        if(selected == "Dauer - absteigend"){
+        	if (thisObject.recipetime < thatObject.recipetime){
+			return 1;
+			}else if (thisObject.recipetime > thatObject.recipetime){
+				return -1;
+			}
+				return 0;
+        }
+
+        if(selected == "Dauer - aufsteigend"){
+        	if (thisObject.recipetime > thatObject.recipetime){
+			return 1;
+			}else if (thisObject.recipetime < thatObject.recipetime){
+				return -1;
+			}
+				return 0;
+        }
+        }
+	
+
+
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
+		$(".recipeListInstructions").hide();
 	  	$(".expandRecipe").hide();
 
 	  	$(".result").click(function(){
@@ -134,4 +207,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		$(this).next(".expandRecipe").children().toggle();
 	  	})
 	  }
+
+	    	  
 })(jQuery);

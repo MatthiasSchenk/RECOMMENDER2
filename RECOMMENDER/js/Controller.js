@@ -19,6 +19,7 @@ App.Controller = (function() {
         solrManager = App.SolrManager().init();
         $(".chzn-select").chosen();
 
+
         
  
         // --- MAIN PAGE ---
@@ -67,6 +68,7 @@ App.Controller = (function() {
         });
 
         //Methods
+
 
         var formatQuery = function(text){
             var normalized = text;
