@@ -16,15 +16,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    //DATA
 
 	    var title = doc.title[0];
-	    var rating = doc.userrating[0] / doc.numuserratings[0];
+	    var rating = doc.userrating[0] / 10;
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
-	    //console.log(ingredients);
-	    //console.log(portionvalues);	
+	    console.log(rating);
+
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];

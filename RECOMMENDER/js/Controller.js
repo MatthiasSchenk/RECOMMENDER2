@@ -3,6 +3,7 @@ App.Controller = (function() {
     var that = {},
     tagCloud = null,
     solrManager = null;
+    var onResultPage = false;
 
 
 
@@ -25,13 +26,20 @@ App.Controller = (function() {
         //Listeners
 
         $( "#searchBarButton" ).click(function() {
+
+            onResultPage = true;
+
+            if(onResultPage){
+                $( ".result" ).remove();
+            }
+
             searchnormalized = document.getElementById('searchBar').value;
             var query = formatQuery(searchnormalized);
             selector = document.getElementById("selector");
             selected = selector.options[selector.selectedIndex].value;
             $( "#searchBarButton" ).trigger("search", [query]);
             solrManager.search(query);
-            console.log("Gesucht nach: "+ query+ " mit selector: " +selected );
+            console.log("Gesucht nach: "+ searchnormalized+ " mit selector: " +selected );
             $("#mostSearchedArea").hide();
             $("#recipeOfTheDayArea").hide();
             $("#filterArea").css("visibility", "visible");
@@ -51,6 +59,11 @@ App.Controller = (function() {
             clickedTag = tag;
             $("#searchBar").val(clickedTag);
             console.log(clickedTag);
+        });
+
+
+        $( "#logoArea").click(function() {
+            onResultPage = false;
         });
 
         //Methods
@@ -88,13 +101,9 @@ App.Controller = (function() {
             };
 
             //INGREDIENT MATCH
-
-
-
-
-
-
-            console.log(result);
+            for (var i = 0; i < searchedWordsArray.length; i++) {
+                    result += "+OR+ingredientname%3A+%22"+searchedWordsArray[i]+"%22"
+            };
             return result;
         }
 
