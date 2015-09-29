@@ -22,7 +22,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    //DATA
 
 	    var title = doc.title[0];
-	    var rating = doc.userrating[0];
+
+	    var rating = doc.userrating[0] / 10;
+
+
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
@@ -30,8 +33,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
 
+
 	    var instructions = doc.instructions[0];
 	    // instructions.replace("<br />", " ");
+
 
 
 	    var alk = (!doc.antialc[0]);
