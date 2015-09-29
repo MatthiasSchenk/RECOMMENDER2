@@ -15,14 +15,16 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
+	    checkTime();
+		console.log(docArray.length);
+	  	counter++;
 
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
-	 	for(var m = 0; m < this.manager.response.response.docs.length; m++){
+	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
 	    //DATA
-
 	    var title = doc.title[0];
 
 	    var rating = doc.userrating[0] / 10;
@@ -148,8 +150,21 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 });
 
+	var checkTime = function(){
+		var time = document.getElementById("range").value;
+		console.log(docArray[0].recipetime);
+		for(var o = 0; o < docArray.length-1; o++){
+			if(docArray[o].recipetime != 30){
+				console.log(docArray[o].recipetime);
+				docArray.splice(o, o+1);
+			}
+		}
+	}
 
 
+	var sortRecipes = function(thisObject, thatObject){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
 
 
 
@@ -194,10 +209,17 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 			}
 				return 0;
         }
+
+        if(selected == "Meistbewertet"){
+        	if (thisObject.numuserratings < thatObject.numuserratings){
+			return 1;
+			}else if (thisObject.numuserratings > thatObject.numuserratings){
+				return -1;
+			}
+				return 0;
+        }
         }
 	
-
-
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
 		$(".recipeListInstructions").hide();
