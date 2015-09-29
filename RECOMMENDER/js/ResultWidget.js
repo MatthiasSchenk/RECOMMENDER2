@@ -6,16 +6,19 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	
 	afterRequest: function () {
+	docArray = [];
 
 	  $(this.target).empty();
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
 	    var dox = this.manager.response.response.docs[i];
 	    docArray.push(dox);
+	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
 	    checkTime();
 		console.log(docArray.length);
 	  	counter++;
+
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
@@ -23,7 +26,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = docArray[m];
 	    //DATA
 	    var title = doc.title[0];
-	    var rating = doc.userrating[0];
+
+	    var rating = doc.userrating[0] / 10;
+
+
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
@@ -31,8 +37,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
 
+
 	    var instructions = doc.instructions[0];
 	    // instructions.replace("<br />", " ");
+
+
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
@@ -122,7 +131,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
 		//ZUTATEN
-		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
+		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", text: ingredient});
 		$($div2).append($ingredients);
 		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
@@ -140,7 +149,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	},
 
 
-});
 
 	var checkTime = function(){
 		var time = document.getElementById("range").value;
@@ -157,6 +165,14 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
         var selected = selector.options[selector.selectedIndex].value;
+
+
+
+
+	var sortRecipes = function(thisObject, thatObject){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
+
 
         if(selected == "Bewertung - absteigend"){
         	if (thisObject.userrating < thatObject.userrating){

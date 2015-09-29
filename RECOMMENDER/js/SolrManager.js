@@ -13,7 +13,7 @@ App.SolrManager = function() {
 
       $(function () {
         Manager = new AjaxSolr.Manager({
-          solrUrl: "http://localhost:8983/solr/recommender/select?q="+query+"&rows=1000&wt=json&indent=true"
+          solrUrl: "http://localhost:8983/solr/recommender/select?q="+query+"&rows=250&wt=json&indent=true"
           //solrUrl: 'http://localhost:8983/solr/recommender/select?q=*%3A*&rows=100&wt=json&indent=true'
           //http://localhost:8983/solr/recommender/select?q=title%3Apizza+salami&wt=json&indent=true
         });

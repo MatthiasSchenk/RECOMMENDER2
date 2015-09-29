@@ -1,6 +1,6 @@
 App.TagCloud = (function() {
     var that = {},
-	wordArray = ["Pizza", "Italienisch", "Spaghetti", "Scheinebraten", "Grillen", "Backen"],
+	wordArray = ["Pizza", "Italienisch", "Spaghetti", "Scheinebraten", "Grillen", "Backen", "haha"],
 	clickedTag,
 
     init = function() {
