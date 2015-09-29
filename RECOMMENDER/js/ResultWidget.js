@@ -6,14 +6,16 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	
 	afterRequest: function () {
+	docArray = [];
 
 	  $(this.target).empty();
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
 	    var dox = this.manager.response.response.docs[i];
 	    docArray.push(dox);
+	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
-	  	counter++;
+
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
@@ -145,7 +147,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	},
 
 
-});
+
 
 
 
@@ -155,8 +157,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
         var selected = selector.options[selector.selectedIndex].value;
-        console.log("SORTIERLISTE", selected);
-        console.log("RATING", docArray[0].userrating);
+
 
         if(selected == "Bewertung - absteigend"){
         	if (thisObject.userrating < thatObject.userrating){
