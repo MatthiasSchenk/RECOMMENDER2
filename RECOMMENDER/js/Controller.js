@@ -7,7 +7,7 @@ App.Controller = (function() {
 
 
     //Variablen
-    var searchText,
+    var searchnormalized,
     selector,
     selected,
     clickedTag,
@@ -25,8 +25,8 @@ App.Controller = (function() {
         //Listeners
 
         $( "#searchBarButton" ).click(function() {
-            searchText = document.getElementById('searchBar').value;
-            var query = formatQuery(searchText);
+            searchnormalized = document.getElementById('searchBar').value;
+            var query = formatQuery(searchnormalized);
             selector = document.getElementById("selector");
             selected = selector.options[selector.selectedIndex].value;
             $( "#searchBarButton" ).trigger("search", [query]);
@@ -56,11 +56,45 @@ App.Controller = (function() {
         //Methods
 
         var formatQuery = function(text){
-            var result = text;
-            result = result.replace(" ", "+");
+            var normalized = text;
+            var result = "";
+            var searchedWordsArray;
+            normalized = normalized.replace(',',' ');
+            normalized = normalized.replace('/',' ');
+            normalized = normalized.replace('&',' ');
+            normalized = normalized.replace(' mit ',' ');
+            normalized = normalized.replace(' und ',' ');
+            normalized = normalized.replace(' oder ',' ');
+            normalized = normalized.replace('  ',' ');
+
+            searchedWordsArray = normalized.split(" ");
 
 
 
+
+            //TITLE MATCH
+            // a) exact match
+            result += "title%3A+%22"
+            for (var i = 0; i < searchedWordsArray.length; i++) {
+                result += searchedWordsArray[i]; 
+                if(i + 1 != searchedWordsArray.length){
+                    result += "+";
+                }        
+            };
+            result += "%22%5E"+searchedWordsArray.length;
+            // b) match by words
+            for (var i = 0; i < searchedWordsArray.length; i++) {
+                    result += "+OR+title%3A+%22"+searchedWordsArray[i]+"%22%5E"+(searchedWordsArray.length-i)
+            };
+
+            //INGREDIENT MATCH
+
+
+
+
+
+
+            console.log(result);
             return result;
         }
 
@@ -69,5 +103,5 @@ App.Controller = (function() {
 
     that.init = init;
 
-	return that;
+    return that;
 })();

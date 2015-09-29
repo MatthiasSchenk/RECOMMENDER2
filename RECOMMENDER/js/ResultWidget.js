@@ -1,13 +1,17 @@
+var counter = 0;
+
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
+
+
 	
 	afterRequest: function () {
 
 	  $(this.target).empty();
-	  console.log("sers");
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
+	  	counter++;
 	    var doc = this.manager.response.response.docs[i];
-	    console.log(doc);
+	    //console.log(doc);
 
 	    //DATA
 
@@ -19,8 +23,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
-	    console.log(ingredients);
-	    console.log(portionvalues);	
+	    //console.log(ingredients);
+	    //console.log(portionvalues);	
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
@@ -46,10 +50,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j]+", \r\n";
+	    	ingredient = ingredient + ingredients[j] + ": " + portionvalues[j] + " " + portiontypes[j] + "\n";
 
 	    }
-	    console.log(ingredient);
+
 
 	
 
@@ -113,6 +117,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  }
 	  expandClickedRecipe();
+	  console.log(counter + " Ergebnisse");
 	},
 
 
