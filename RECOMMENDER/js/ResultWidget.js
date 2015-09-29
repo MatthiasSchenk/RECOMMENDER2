@@ -1,3 +1,5 @@
+var docArray = [];
+var sortedDocArray = [];
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	
@@ -6,13 +8,18 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  $(this.target).empty();
 	  console.log("sers");
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
-	    var doc = this.manager.response.response.docs[i];
-	    console.log(doc);
+	    var dox = this.manager.response.response.docs[i];
+	    docArray.push(dox);
+	  }
+	    //sortRecipes(doc);
 
+	 	for(var j = 0; j = docArray.length; j++){
+	 	console.log(docArray.length);
+	    var doc = docArray[j];
 	    //DATA
 
 	    var title = doc.title[0];
-	    var rating = doc.userrating[0] / doc.numuserratings[0];
+	    var rating = doc.userrating[0];
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
@@ -120,6 +127,31 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 });
+
+	var sortRecipes = function(){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
+        console.log("SORTIERLISTE", selected);
+        console.log("RATING", docArray[0].userrating);
+
+        if(sortedDocArray.length == 0){
+        	sortedDocArray[0] = docArray[0];
+        }else{
+        	for(i = 1; i < sortedDocArray.length; i++){
+        		for(j = 0; j < docArray.length; j++){
+        			var current = docArray[j].userrating;
+        			var fix = sortedDocArray[i].userrating;
+        			if(current > fix){
+        				sortedDocArray.splice[j, 0, docArray[i]];
+        				break;
+        			}
+        		}
+        		sortedDocArray.push(docArray[i]);
+        	}
+        }
+	}
+	
+
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
 	  	$(".expandRecipe").hide();
