@@ -147,7 +147,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
 	},
-
+});
 
 
 	var checkTime = function(){
@@ -161,10 +161,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		}
 	}
 
-
-	var sortRecipes = function(thisObject, thatObject){
-		var selector = document.getElementById("selector");
-        var selected = selector.options[selector.selectedIndex].value;
 
 
 
