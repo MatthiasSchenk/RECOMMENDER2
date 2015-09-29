@@ -14,7 +14,14 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var title = doc.title[0];
 	    var rating = doc.userrating[0] / doc.numuserratings[0];
 	    var duration = doc.recipetime[0];
-	    var ingredients = doc.ingredientname[0];
+
+	    var ingredients = doc.ingredientname;
+	    var ingredient = "Zutaten: ";
+	    var portionvalues = doc.portionvalue;
+	    var portiontypes = doc.portiontype;
+	    console.log(ingredients);
+	    console.log(portionvalues);	
+
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
@@ -34,6 +41,20 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	var ratingString = "Rating: keine Angabe";
 	    }
 
+	    
+
+
+	    for(var j=0; j<ingredients.length; j++){
+
+	    	ingredient = ingredient + ingredients[j] + ": " + portionvalues[j] + " " + portiontypes[j] + "\n";
+
+	    }
+	    console.log(ingredient);
+
+	
+
+
+	    
 	    	//alk
 	    if(alk){
 	    	var alcString = "Alkohol: Ja"
@@ -52,12 +73,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var lactoseString = "Laktose: Nein"
 	    }
-	    	//ingredients
-	    if(ingredients != 0) {
-	    	var ingredient = "Zutaten: "+ingredients;
-	  	}else{
-	  		var ingredient = "keine Zutaten notwendig.";
-	  	}
+
 
 
 	    //HTML ELEMENTS
@@ -89,6 +105,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
 		$($div2).append($ingredients);
+		
+		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
+		$($div2).append($portionvalues);
+		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
+		$($div2).append($portiontypes);
 
 	  }
 	  expandClickedRecipe();
