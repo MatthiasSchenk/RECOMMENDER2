@@ -153,7 +153,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
 	},
-});
+
 
 
 });
@@ -229,8 +229,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 				return -1;
 			}
 				return 0;
-        }
-        }
+        	}
+     }
 	
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();

@@ -1,6 +1,6 @@
 App.TagCloud = (function() {
     var that = {},
-	names = ["Tag", "Cloud", "mit", "Array", "is", "so", "EASY JUNGE"],
+	names = ["Tag", "Cloud", "mit", "Array", "is", "so", "EASY"],
 	weights = [10,12,14,16,18,20,30],
 	clickedTag,
 
