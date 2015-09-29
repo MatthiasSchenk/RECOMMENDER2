@@ -48,7 +48,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + ingredients[j] + ": " + portionvalues[j] + " " + portiontypes[j] + "\n";
+	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j]+", \r\n";
 
 	    }
 	    console.log(ingredient);

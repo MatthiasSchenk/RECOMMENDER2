@@ -2,6 +2,7 @@
     width: 80%;
 }
 
+
 #searchBar {
     margin-top: 22px;
     width: 400px;
@@ -99,9 +100,6 @@
     
 }
 
-#recipeIngredients{
-
-}
 
 #filterArea {
     width: 18%;
@@ -235,7 +233,7 @@
 }
 
 .recipeListIngredients {
-    width: 300px;
+    width: 400px;
     height: 0px;
     margin-top: 0px;
     margin-left: 10px;
