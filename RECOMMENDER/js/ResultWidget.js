@@ -1,16 +1,21 @@
 var docArray = [];
+var counter = 0;
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
+
+
 	
 	afterRequest: function () {
 
 	  $(this.target).empty();
-	  console.log("sers");
 	  for (var i = 0, l = this.manager.response.response.docs.length; i < l; i++) {
 	    var dox = this.manager.response.response.docs[i];
 	    docArray.push(dox);
 	  }
 	    docArray.sort(sortRecipes);
+	  	counter++;
+	    var doc = this.manager.response.response.docs[i];
+	    //console.log(doc);
 
 	 	for(var m = 0; m < this.manager.response.response.docs.length; m++){
 	    var doc = docArray[m];
@@ -24,6 +29,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
+
+	    var instructions = doc.instructions[0];
+	    // instructions.replace("<br />", " ");
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
@@ -43,18 +51,26 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
+	    	//instructions
+	    if(instructions[0] != ""){
+	    	var instructionString = "Anleitung: "+instructions;
+	    }else{
+	    	var instructionString = "leider keine Anleitung vorhanden";
+	    }
+	    
+		
 
 	    
 
-
+	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j]+", \r\n";
+	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] +"";
 
 	    }
 
-	
 
+	    	
 
 	    
 	    	//alk
@@ -107,16 +123,23 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//ZUTATEN
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients", text: ingredient});
 		$($div2).append($ingredients);
-		
+		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
 		$($div2).append($portionvalues);
+		//PORTIONTYPES
 		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
 		$($div2).append($portiontypes);
+		//INSTRUCTIONS
+		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", text: instructionString});
+		$($div2).append($instructions);
 
 	  }
 	  expandClickedRecipe();
+	  console.log(counter + " Ergebnisse");
 	},
 
+
+});
 
 
 
@@ -167,8 +190,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
         }
 	
 
+
 	var expandClickedRecipe = function(){
 		$(".recipeListIngredients").hide();
+		$(".recipeListInstructions").hide();
 	  	$(".expandRecipe").hide();
 
 	  	$(".result").click(function(){
@@ -176,4 +201,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		$(this).next(".expandRecipe").children().toggle();
 	  	})
 	  }
+
+	    	  
 })(jQuery);

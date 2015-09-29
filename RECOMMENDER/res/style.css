@@ -242,8 +242,22 @@
     text-align: left;
 }
 
+.recipeListInstructions {
+    
+    font-size: 20px;
+    font-style: italic;
+    text-align: justify;
 
+    margin-left: 500px;
+    margin-top: -20px;
+}
 
+.scroll {
+    background: transparent;
+    height: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
 
 input[type=range] {
     /*removes default webkit styles*/
