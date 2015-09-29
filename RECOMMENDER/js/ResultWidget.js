@@ -1,5 +1,4 @@
 var docArray = [];
-var sortedDocArray = [];
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	
@@ -11,11 +10,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var dox = this.manager.response.response.docs[i];
 	    docArray.push(dox);
 	  }
-	    //sortRecipes(doc);
+	    docArray.sort(sortRecipes);
 
-	 	for(var j = 0; j = docArray.length; j++){
-	 	console.log(docArray.length);
-	    var doc = docArray[j];
+	 	for(var m = 0; m < this.manager.response.response.docs.length; m++){
+	    var doc = docArray[m];
 	    //DATA
 
 	    var title = doc.title[0];
@@ -26,8 +24,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var ingredient = "Zutaten: ";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
-	    console.log(ingredients);
-	    console.log(portionvalues);	
 
 	    var alk = (!doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
@@ -56,7 +52,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j]+", \r\n";
 
 	    }
-	    console.log(ingredient);
 
 	
 
@@ -128,28 +123,48 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 });
 
-	var sortRecipes = function(){
+	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
         var selected = selector.options[selector.selectedIndex].value;
         console.log("SORTIERLISTE", selected);
         console.log("RATING", docArray[0].userrating);
 
-        if(sortedDocArray.length == 0){
-        	sortedDocArray[0] = docArray[0];
-        }else{
-        	for(i = 1; i < sortedDocArray.length; i++){
-        		for(j = 0; j < docArray.length; j++){
-        			var current = docArray[j].userrating;
-        			var fix = sortedDocArray[i].userrating;
-        			if(current > fix){
-        				sortedDocArray.splice[j, 0, docArray[i]];
-        				break;
-        			}
-        		}
-        		sortedDocArray.push(docArray[i]);
-        	}
+        if(selected == "Bewertung - absteigend"){
+        	if (thisObject.userrating < thatObject.userrating){
+			return 1;
+			}else if (thisObject.userrating > thatObject.userrating){
+				return -1;
+			}
+				return 0;
         }
-	}
+
+        if(selected == "Bewertung - aufsteigend"){
+        	if (thisObject.userrating > thatObject.userrating){
+			return 1;
+			}else if (thisObject.userrating < thatObject.userrating){
+				return -1;
+			}
+				return 0;
+        }
+
+        if(selected == "Dauer - absteigend"){
+        	if (thisObject.recipetime < thatObject.recipetime){
+			return 1;
+			}else if (thisObject.recipetime > thatObject.recipetime){
+				return -1;
+			}
+				return 0;
+        }
+
+        if(selected == "Dauer - aufsteigend"){
+        	if (thisObject.recipetime > thatObject.recipetime){
+			return 1;
+			}else if (thisObject.recipetime < thatObject.recipetime){
+				return -1;
+			}
+				return 0;
+        }
+        }
 	
 
 	var expandClickedRecipe = function(){
