@@ -1,5 +1,6 @@
 var docArray = [];
 var counter = 0;
+var selectedTime = 1000;
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
@@ -15,8 +16,13 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
-	    checkTime();
-		console.log(docArray.length);
+
+	 $("#range").on("input change", function() { 
+       
+ 		selectedTime = document.getElementById("range").value;
+ 		 console.log(selectedTime)
+    });
+	    
 	  	counter++;
 
 	    var doc = this.manager.response.response.docs[i];
@@ -150,20 +156,30 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 });
 
 
+});
+
 	var checkTime = function(){
-		var time = document.getElementById("range").value;
-		console.log(docArray[0].recipetime);
-		for(var o = 0; o < docArray.length-1; o++){
-			if(docArray[o].recipetime != 30){
-				console.log(docArray[o].recipetime);
-				docArray.splice(o, o+1);
+		var temp = [];
+		for(var o = 0; o < docArray.length; o++){
+			if(docArray[o].recipetime[0] <= time){
+				console.log(docArray[o].recipetime[0]);
+				temp.push(docArray[o]);
+
 			}
+
 		}
+		return temp;
+
 	}
 
 
 
 
+	var sortRecipes = function(thisObject, thatObject){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
+
+	}
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
