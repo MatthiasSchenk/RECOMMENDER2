@@ -66,7 +66,9 @@ App.TagCloud = (function() {
 				}
 
 				if(cloud == 2){
-					$("#tagCloud2").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+					if(names[i] != null){
+						$("#tagCloud2").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+					}
 
 				}
 			};
