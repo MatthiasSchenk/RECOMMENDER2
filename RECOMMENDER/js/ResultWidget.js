@@ -38,6 +38,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsLactose();
 	    }
 	    if(option3 == 1){
+	    	console.log("GOING TO DELETE")
 	    	docArray = filterOptionsVege();
 	    }
 	    if(option4 == 1){
@@ -66,6 +67,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
+
+	    console.log(doc.vegetarian);
 
 
 
