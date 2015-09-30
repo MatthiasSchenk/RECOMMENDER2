@@ -1,7 +1,7 @@
 App.TagCloud = (function() {
     var that = {},
-	names = ["Tag", "Cloud", "mit", "Array", "is", "so", "EASY"],
-	weights = [10,12,14,16,18,20,30],
+	names = ["Nudelsalat", "Schokoladenkuchen", "Eierlikörkuchen", "Apfelkuchen", "Nusskuchen", "Mousse au chocolat", "Gefüllte Champignons", "Nudelauflauf", "Käsekuchen"],
+	weights = [93,69,67,65,64,58,56,55,54],
 	clickedTag,
 
     init = function() {

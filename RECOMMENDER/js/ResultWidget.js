@@ -192,6 +192,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	var createTagCloudData = function () {
 		var numShownTags; 
 		var allIngredients = [];
+		var counters;
+		var summedIngredients;
 
 		if(docArray.length > 10){
 			numShownTags = 10;
@@ -205,6 +207,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 			};
 		};
 		console.log(allIngredients)
+
+		for (var i = 0; i < allIngredients.length; i++) {
+			
+		};
 	}
 
 	var sortRecipes = function(thisObject, thatObject){
