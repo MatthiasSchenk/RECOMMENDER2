@@ -194,7 +194,7 @@
 }
 
 .recipeListAlc{
-    margin-top: -56px;
+    margin-top: -60px;
     margin-left: 850px;
     font-size: 15px;
     font-style: italic;
@@ -203,7 +203,7 @@
 }
 
 .recipeListDiabetus{
-    margin-top: -20px;
+    margin-top: -50px;
     margin-left: 850px;
     font-size: 15px;
     font-style: italic;
@@ -213,12 +213,35 @@
 }
 
 .recipeListLactose{
-    margin-top: -12px;
+    margin-top: -15px;
     margin-left: 850px;
     font-size: 15px;
     font-style: italic;
     text-align: left;
 
+}
+
+.recipeListGluten{
+    margin-top: -15px;
+    margin-left: 850px;
+    font-size: 15px;
+    font-style: italic;
+    text-align: left;
+}
+
+.recipeListVegetarian{
+    margin-top: -15px;
+    margin-left: 850px;
+    font-size: 15px;
+    font-style: italic;
+    text-align: left;
+}
+
+.recipeListSportsman{
+    margin-left: 850px;
+    font-size: 15px;
+    font-style: italic;
+    text-align: left;
 }
 
 .recipeListIngredients {
@@ -239,6 +262,8 @@
     margin-left: 500px;
     margin-top: -20px;
 }
+
+
 
 .scroll {
     height: 200px;
