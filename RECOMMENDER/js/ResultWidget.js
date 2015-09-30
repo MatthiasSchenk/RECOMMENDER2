@@ -1,6 +1,13 @@
 var docArray = [];
 var counter = 0;
 var selectedTime = 1000;
+var chosenArray = [];
+var option1 = 0;
+var option2 = 0;
+var option3 = 0;
+var option4 = 0;
+var option5 = 0;
+var option0 = 0;
 var tagCloudData;
 
 (function ($) {
@@ -20,12 +27,32 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
-	    docArray = sortTime();
+	    checkFilterOptions();
+	    if(option0 == 1){
+	    	docArray = filterOptionsAlc();
+	    }
+	    if(option1 == 1){
+	    	docArray = filterOptionsGluten();
+	    }
+	    if(option2 == 1){
+	    	docArray = filterOptionsLactose();
+	    }
+	    if(option3 == 1){
+	    	docArray = filterOptionsVege();
+	    }
+	    if(option4 == 1){
+	    	docArray = filterOptionsSport();
+	    }
+	    if(option5 == 1){
+	    	docArray = filterOptionsSugar();
+	    }
+	 $("#range").on("input change", function() { 
+	    docArray = sortTime();});
 
 	 $("#range").on("change", function() { 
        
  		selectedTime = document.getElementById("range").value;
- 		 console.log(selectedTime)
+ 		 console.log(selectedTime);
     });
 	    
 	  	counter++;
@@ -55,6 +82,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var rating = doc.userrating[0] / 10;
 	    var numuserratings = doc.numuserratings[0];
 
+	    
+	    //console.log("CHOSEN", $("recipientSelection").chosen());
 
 	    var duration = doc.recipetime[0];
 
@@ -112,21 +141,21 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    
 	    	//alk
 	    if(alk){
-	    	var alcString = "Alkohol: Ja"
+	    	var alcString = "Alkohol: Ja";
 	    }else{
-	    	var alcString = "Alkohol: Nein"
+	    	var alcString = "Alkohol: Nein";
 	    }
 	    	//diabetus
 	    if(diabetus){
-	    	var diabetusString = "Diabetiker: Ja"
+	    	var diabetusString = "Diabetiker: Ja";
 	    }else{
-	    	var diabetusString = "Diabetiker: Nein"
+	    	var diabetusString = "Diabetiker: Nein";
 	    }
 	    	//lactose
 	   	if(lactose){
-	    	var lactoseString = "Laktose: Ja"
+	    	var lactoseString = "Laktose: Ja";
 	    }else{
-	    	var lactoseString = "Laktose: Nein"
+	    	var lactoseString = "Laktose: Nein";
 	    }
 
 
@@ -173,12 +202,33 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  }
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
-	},
-
-
-
-
+	}
 });
+})(jQuery);
+
+
+	var checkFilterOptions = function(){
+		if(chosenArray.length == 0 ){
+			console.log("Keine Filteroptionen angegeben");
+		}else{
+			for (var i = 0; i < chosenArray.length; i++) {
+				var index = i+1;
+				var chosen = index.toString();
+				var selected = document.getElementById("option"+chosen).text;
+			}
+		}
+	}
+
+
+	var checkTime = function(){
+		var temp = [];
+		for(var o = 0; o < docArray.length; o++){
+			if(docArray[o].recipetime[0] <= time){
+				console.log(docArray[o].recipetime[0]);
+				temp.push(docArray[o]);
+			}
+		}
+	}
 
 	var sortTime = function () {
 		var result = [];
@@ -190,12 +240,30 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		return result;
 	}
 
+	var createTagCloudData = function () {
+		var numShownTags; 
+		var allIngredients = [];
+		var counters;
+		var summedIngredients;
 
-	var sortRecipes = function(thisObject, thatObject){
-		var selector = document.getElementById("selector");
-        var selected = selector.options[selector.selectedIndex].value;
+		if(docArray.length > 10){
+			numShownTags = 10;
+		}else{
+			numShownTags = docArray.length;
+		}
+		
+		for (var i = 0; i < docArray.length; i++) {
+			for (var j = 0; j < docArray[i].ingredientname.length; j++) {
+				allIngredients.push(docArray[i].ingredientname[j])
+			};
+		};
+		console.log(allIngredients)
 
+		for (var i = 0; i < allIngredients.length; i++) {
+			
+		};
 	}
+
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
@@ -258,7 +326,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		$(this).next(".expandRecipe").children().slideToggle(600);
 	  		
 	  		updateTagCloud($(this).find(".recipeListTitle").text());
-	  	})
+	  	});
+	  }
 
 	  var updateTagCloud = function  (recipeTitle) {
 	  	var ingrList = [];
@@ -267,8 +336,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		if(docArray[i].title[0] == recipeTitle){
 	  			ingrList = docArray[i].ingredientname;
 	  		}
-	  	};
-
+	  	}
 	  	compareIngredientLists(ingrList, recipeTitle);
 	  }
 
@@ -281,9 +349,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  							interestingRecipes.push(docArray[j].title[0])
 	  						}
 	  						
-	  				};
-	  			};
-	  		};
+	  				}
+	  			}
+	  		}
 
 	  		interestingRecipes.sort();
 
@@ -326,7 +394,198 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  }
 
-	  }
+	  
 
 	    	  
-})(jQuery);
+
+function changeHiddenInput (objDropDown){
+		document.getElementById("hiddenInput").value = objDropDown.value;
+		var currentValue = document.getElementById("hiddenInput").value;
+		console.log("currentValue: ",currentValue);
+		if(currentValue == ""){
+			console.log("already in array");
+			console.log(document.getElementById("option1").selected);
+
+			if(option0 == 1 && document.getElementById("option0").selected == false){
+				var index = chosenArray.indexOf("0");
+				chosenArray.splice(index, 1);
+				option0 = 0;
+			}else if
+			(option1 == 1 && document.getElementById("option1").selected == false){
+				var index = chosenArray.indexOf("1");
+				chosenArray.splice(index, 1);
+				option1 = 0;
+			}else if
+			(option2 == 1 && document.getElementById("option2").selected == false){
+				var index = chosenArray.indexOf("2");
+				chosenArray.splice(index, 1);
+				option2 = 0;
+			}else if
+			(option3 == 1 && document.getElementById("option3").selected == false){
+				var index = chosenArray.indexOf("3");
+				chosenArray.splice(index, 1);
+				option3 = 0;
+			}else if
+			(option4 == 1 && document.getElementById("option4").selected == false){
+				var index = chosenArray.indexOf("4");
+				chosenArray.splice(index, 1);
+				option4 = 0;
+			}else if
+			(option5 == 1 && document.getElementById("option5").selected == false){
+				var index = chosenArray.indexOf("5");
+				chosenArray.splice(index, 1);
+				option5 = 0;
+			}
+			console.log(chosenArray);
+
+		}else{
+					if(currentValue == 0){
+						option0 = 1;
+						console.log("option0 = " + option0);
+					}
+					if (currentValue == 1){
+						option1 = 1;
+						console.log("option1 = " + option1);
+					}
+					if (currentValue == 2){
+						option2 = 1;
+						console.log("option2 = " + option2);
+					}
+					if (currentValue == 3){
+						option3 = 1;
+						console.log("option3 = " + option3);
+					}
+					if (currentValue == 4){
+						option4 = 1;
+						console.log("option4 = "+ option4);
+					}
+					if (currentValue == 5){
+						option5 = 1;
+						console.log("option5 = "+ option4);
+					}
+					chosenArray.push(currentValue);
+					console.log(chosenArray);
+			}
+			document.getElementById("recipientSelection").value = null;
+		}
+		
+		/*console.log("BEGINARRAY", chosenArray);
+		var valuefound = false;
+		var currentValue = document.getElementById("hiddenInput").value;
+		for (var i = 0; i <= chosenArray.length; i++) {
+			if(chosenArray[i] == currentValue){
+				console.log("already in array");
+				var index = chosenArray.indexOf(currentValue);
+				chosenArray.splice(i, 1);
+				valuefound = true;
+			}
+		};
+		if(valuefound==false){
+			currentValue = objDropDown.value;
+			chosenArray.push(currentValue);
+		}
+		document.getElementById("recipientSelection").value = "";
+		console.log("CHOSEN", chosenArray);*/
+		
+	
+
+	function checkValueInArray(currentValue, arr){
+		console.log("proof ", currentValue, " - ", arr);
+		for (var i = 0; i < arr.length; i++) {
+			if(currentValue == arr[i]){
+				console.log("found ", currentValue, " - ", arr);
+				return true;
+			}
+		};
+		return false;
+	}
+
+
+	var filterOptionsAlc = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting alc recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].antialc == "false"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
+
+	var filterOptionsGluten = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting gluten recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].gluten == "false"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
+
+	var filterOptionsLactose = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting lactose recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].lactose == "true"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
+	var filterOptionsVege = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting vege recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].vegetarian == "true"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
+
+	var filterOptionsSport = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting alc recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].sportsman == "true"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
+
+	var filterOptionsSugar = function(){
+		var arr = [];
+		for (var i = 0; i < chosenArray.length; i++) {
+			if(chosenArray[i] == 0){
+				console.log("deleting alc recipes");
+				for (var j = 0; j < docArray.length; j++) {
+					if(docArray[j].diabetus == "true"){
+						arr.push(docArray[j]);
+					}
+				};
+			}
+		}
+		return arr;
+	}
