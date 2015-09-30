@@ -1,4 +1,5 @@
 App.TagCloud = (function() {
+
     var that = {},
 	names = ["Nudelsalat", "Schokoladenkuchen", "Eierlikörkuchen", "Apfelkuchen", "Nusskuchen", "Mousse au chocolat", "Gefüllte Champignons", "Nudelauflauf", "Käsekuchen"],
 	weights = [93,69,67,65,64,58,56,55,54],
@@ -7,11 +8,24 @@ App.TagCloud = (function() {
     init = function() {
 
     	var ul = document.getElementById('tagCloud');
-
-    	fillCloud(names, weights);
-
-
     	var ul2 = document.getElementById('tagCloud2');
+
+   		fillCloud(1, names, weights);
+
+   		document.body.addEventListener("updateCloud", function(e){ 
+
+   			$("#tagCloud2").empty();
+   			var n = [];
+   			var w = [];
+
+   			for (var i = 0; i < e.detail.length; i++) {
+   				n[i] = e.detail[i].title;
+   				w[i] = e.detail[i].num;
+   				
+   			};
+   
+   			fillCloud(2,n,w)
+   		},true);
 
     	//Click listener
     	function getEventTarget(e) {
@@ -45,15 +59,20 @@ App.TagCloud = (function() {
 		    });
 		}
 
-		function fillCloud(names, weights){
+		function fillCloud(cloud, names, weights){
 			for (var i = 0; i < names.length; i++) {
-				$("#tagCloud").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+				if(cloud == 1){
+					$("#tagCloud").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+				}
+
+				if(cloud == 2){
+					$("#tagCloud2").append('<li id="tagCloudElement'+i+'" data-weight="'+weights[i]+'"><a href="#">'+names[i]+'</a></li>');
+
+				}
 			};
-
-
 		}
 
-		
+
 
 	};
 

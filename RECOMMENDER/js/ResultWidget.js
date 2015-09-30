@@ -36,7 +36,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    // ANZEIGE ----------------------------------------------------------
 
-	   	createTagCloudData();
+
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
 
@@ -160,11 +160,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", html: ingredient});
 		$($div2).append($ingredients);
 		//PORTIONVALUES
-		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
-		$($div2).append($portionvalues);
+		//var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
+		//$($div2).append($portionvalues);
 		//PORTIONTYPES
-		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
-		$($div2).append($portiontypes);
+		//var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
+		//$($div2).append($portiontypes);
 		//INSTRUCTIONS
 		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", html: instructionString});
 		
@@ -277,8 +277,77 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  	$(".result").click(function(){
 	  		$(this).next(".expandRecipe").slideToggle(600);
-	  		$(this).next(".expandRecipe").children().toggle();
+	  		$(this).next(".expandRecipe").children().slideToggle(600);
+	  		
+	  		updateTagCloud($(this).find(".recipeListTitle").text());
 	  	})
+
+	  var updateTagCloud = function  (recipeTitle) {
+	  	var ingrList = [];
+
+	  	for (var i = 0; i < docArray.length; i++) {
+	  		if(docArray[i].title[0] == recipeTitle){
+	  			ingrList = docArray[i].ingredientname;
+	  		}
+	  	};
+
+	  	compareIngredientLists(ingrList, recipeTitle);
+	  }
+
+	  var compareIngredientLists = function  (list, recipeTitle) {
+	  	var interestingRecipes = [];
+	  		for (var i = 0; i < list.length; i++) {
+	  			for (var j = 0; j < docArray.length; j++) {
+	  					if(docArray[j].ingredientname.indexOf(list[i]) > -1){
+	  						if(docArray[j].title[0] != recipeTitle){
+	  							interestingRecipes.push(docArray[j].title[0])
+	  						}
+	  						
+	  				};
+	  			};
+	  		};
+
+	  		interestingRecipes.sort();
+
+	  		var sortedInterestingRecipes = [];
+	  		var sortedInterestingRecipesSimilarity = [];
+
+	  		var current = null;
+    		var cnt = 0;
+		    for (var i = 0; i < interestingRecipes.length; i++) {
+		        if (interestingRecipes[i] != current) {
+		            if (cnt > 0) {
+		            	sortedInterestingRecipes.push({title: current, num: cnt}); 
+		            }
+		            current = interestingRecipes[i];
+		            cnt = 1;
+		        } else {
+		            cnt++;
+		        }
+		    }
+		    if (cnt > 0) {
+		        sortedInterestingRecipes.push(current);
+		    }
+
+
+			sortedInterestingRecipes.sort(function compare(a,b) {
+				  if (a.num < b.num)
+				    return 1;
+				  if (a.num > b.num)
+				    return -1;
+				  return 0;
+				});
+
+			sortedInterestingRecipes = sortedInterestingRecipes.slice(0, 6);
+
+
+			tagCloudData = sortedInterestingRecipes;
+
+			var update = new CustomEvent("updateCloud", {"detail": sortedInterestingRecipes});
+			document.body.dispatchEvent(update);
+
+	  }
+
 	  }
 
 	    	  
