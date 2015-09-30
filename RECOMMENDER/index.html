@@ -33,7 +33,7 @@
         <a href="javascript:location.reload()" target="_self"><img src="img/logo.jpg"></a>
     </div>
     <div id="searchBarArea">
-        <input type="text" id="searchBar" placeholder="Enter Query and Press -->">
+        <input type="text" id="searchBar" placeholder=" Rezept oder Zutat eing.">
         <button type="submit" id="searchBarButton"> <img src="img/SearchButton.png" height="60" width="60" alt="">
         </button>
         <select id="selector">
@@ -53,14 +53,8 @@
             </ul>
         </section>
 
-        <section class="container" id="recipeOfTheDayArea">
-            <h1>Rezept des Tages</h1> 
-            <img src="img/schweinebraten.jpg" width="250px" height="150px">
-            <p>Schweinebraten mit Rosmarin</p>
-        </section>
-
         <form class="container" id="filterArea" action="action_page.php" oninput="x.value=parseInt(range.value)" oninput="y.value=parseInt(range.value)">
-            <h2>Dauer in Minuten</h2>
+            <h2>Dauer weniger als (min):</h2>
             <input type="range" id="range" name="range">
             <br>
             <output name="x" for="range">50</output>
@@ -71,22 +65,24 @@
                 <option value="2" id="option2">Laktosefrei</option>  
                 <option value="3" id="option3">Vegetarisch</option>  
                 <option value="4" id="option4">Sportlernahrung</option>
-                <option value="5" id="option5">Zuckerfrei</option>  
+                <option value="5" id="option5">Zuckerfrei</option>
+            <h2>Erweitert</h1>
+            <select data-placeholder="Zutat auswählen.." multiple class="chzn-select" id="recipientSelection">
+                <option value="0">Alkoholfrei</option>
+                <option value="4">Glutenfrei</option>  
+                <option value="5">Laktosefrei</option>  
+                <option value="6">Vegetarisch</option>  
+                <option value="7">Sportlernahrung</option>
+                <option value="10">Zuckerfrei</option>
             </select><br><br>
             <input type="hidden" name="hiddenInput" id="hiddenInput" value="" />
         </form>
 
 
-        <section class="TagCloudResultPage" id="mostSearchedArea2">
+        <section class="TagCloudResultPage" id="mostSearchedArea2" >
 
             <ul id="tagCloud2">
 
-                <li id="tagCloudElement1" data-weight="30"><a href="#">Pizza</a></li>
-                <li id="tagCloudElement2" data-weight="21"><a href="#">Italienisch</a></li>
-                <li id="tagCloudElement3" data-weight="15"><a href="#">Spaghetti</a></li>
-                <li id="tagCloudElement4" data-weight="12"><a href="#">Schweinebraten</a></li>
-                <li id="tagCloudElement5" data-weight="8"><a href="#">Soße</a></li>
-                <li id="tagCloudElement6" data-weight="3"><a href="#">Haxe</a></li>
             </ul>
 
         </section>

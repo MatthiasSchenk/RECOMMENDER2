@@ -8,12 +8,16 @@ var option3 = 0;
 var option4 = 0;
 var option5 = 0;
 var option0 = 0;
+var tagCloudData;
+
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 	
 	afterRequest: function () {
+
+	// DATEN ------------------------------------------------------
 	docArray = [];
 
 	  $(this.target).empty();
@@ -43,6 +47,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsSugar();
 	    }
 	 $("#range").on("input change", function() { 
+	    docArray = sortTime();
+
+	 $("#range").on("change", function() { 
        
  		selectedTime = document.getElementById("range").value;
  		 console.log(selectedTime)
@@ -53,12 +60,27 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
+
+	    // ANZEIGE ----------------------------------------------------------
+
+
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-	    //DATA
-	    var title = doc.title[0];
+
+
+
+
+
+	    //variablen
+	    if(doc.title[0].length > 40){
+	    	var title = doc.title[0].substring(0,37)+"...";
+	    }else{
+	   		var title = doc.title[0].substring(0,40);
+	    }
+
 
 	    var rating = doc.userrating[0] / 10;
+	    var numuserratings = doc.numuserratings[0];
 
 	    
 	    //console.log("CHOSEN", $("recipientSelection").chosen());
@@ -90,7 +112,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }
 	    	//rating
 	   	if(rating > 0){
-	    	var ratingString = "Rating: "+rating;
+	    	var ratingString = "Rating: "+rating+" ("+numuserratings+" mal bew.)";
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
@@ -167,11 +189,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", html: ingredient});
 		$($div2).append($ingredients);
 		//PORTIONVALUES
-		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
-		$($div2).append($portionvalues);
+		//var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
+		//$($div2).append($portionvalues);
 		//PORTIONTYPES
-		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
-		$($div2).append($portiontypes);
+		//var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
+		//$($div2).append($portiontypes);
 		//INSTRUCTIONS
 		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", html: instructionString});
 		
@@ -207,14 +229,21 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 				console.log(docArray[o].recipetime[0]);
 				temp.push(docArray[o]);
 
+	var sortTime = function () {
+		var result = [];
+		for (var i = 0; i < docArray.length; i++) {
+			if(docArray[i].recipetime[0] < selectedTime){
+				result.push(docArray[i]);
 			}
-
-		}
-		return temp;
-
+		};
+		return result;
 	}
 
+	var sortRecipes = function(thisObject, thatObject){
+		var selector = document.getElementById("selector");
+        var selected = selector.options[selector.selectedIndex].value;
 
+	}
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
@@ -274,8 +303,77 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  	$(".result").click(function(){
 	  		$(this).next(".expandRecipe").slideToggle(600);
-	  		$(this).next(".expandRecipe").children().toggle();
+	  		$(this).next(".expandRecipe").children().slideToggle(600);
+	  		
+	  		updateTagCloud($(this).find(".recipeListTitle").text());
 	  	})
+
+	  var updateTagCloud = function  (recipeTitle) {
+	  	var ingrList = [];
+
+	  	for (var i = 0; i < docArray.length; i++) {
+	  		if(docArray[i].title[0] == recipeTitle){
+	  			ingrList = docArray[i].ingredientname;
+	  		}
+	  	};
+
+	  	compareIngredientLists(ingrList, recipeTitle);
+	  }
+
+	  var compareIngredientLists = function  (list, recipeTitle) {
+	  	var interestingRecipes = [];
+	  		for (var i = 0; i < list.length; i++) {
+	  			for (var j = 0; j < docArray.length; j++) {
+	  					if(docArray[j].ingredientname.indexOf(list[i]) > -1){
+	  						if(docArray[j].title[0] != recipeTitle){
+	  							interestingRecipes.push(docArray[j].title[0])
+	  						}
+	  						
+	  				};
+	  			};
+	  		};
+
+	  		interestingRecipes.sort();
+
+	  		var sortedInterestingRecipes = [];
+	  		var sortedInterestingRecipesSimilarity = [];
+
+	  		var current = null;
+    		var cnt = 0;
+		    for (var i = 0; i < interestingRecipes.length; i++) {
+		        if (interestingRecipes[i] != current) {
+		            if (cnt > 0) {
+		            	sortedInterestingRecipes.push({title: current, num: cnt}); 
+		            }
+		            current = interestingRecipes[i];
+		            cnt = 1;
+		        } else {
+		            cnt++;
+		        }
+		    }
+		    if (cnt > 0) {
+		        sortedInterestingRecipes.push(current);
+		    }
+
+
+			sortedInterestingRecipes.sort(function compare(a,b) {
+				  if (a.num < b.num)
+				    return 1;
+				  if (a.num > b.num)
+				    return -1;
+				  return 0;
+				});
+
+			sortedInterestingRecipes = sortedInterestingRecipes.slice(0, 6);
+
+
+			tagCloudData = sortedInterestingRecipes;
+
+			var update = new CustomEvent("updateCloud", {"detail": sortedInterestingRecipes});
+			document.body.dispatchEvent(update);
+
+	  }
+
 	  }
 
 	    	  
