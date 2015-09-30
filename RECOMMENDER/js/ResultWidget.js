@@ -98,7 +98,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-	    var alk = (!doc.antialc[0]);
+	    var antiAlk = (doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
 
@@ -140,10 +140,10 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    
 	    	//alk
-	    if(alk){
-	    	var alcString = "Alkohol: Ja";
-	    }else{
+	    if(antiAlk){
 	    	var alcString = "Alkohol: Nein";
+	    }else{
+	    	var alcString = "Alkohol: Ja";
 	    }
 	    	//diabetus
 	    if(diabetus){
