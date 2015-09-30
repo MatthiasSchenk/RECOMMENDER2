@@ -66,7 +66,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-	    console.log(doc);
+	    console.log(doc.vegetarian);
 
 
 
