@@ -73,7 +73,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
 
-
+	    console.log(doc.diabetus)
+	    
 	    //STRINGS
 	    	//duration
 	    if(duration != 0){
