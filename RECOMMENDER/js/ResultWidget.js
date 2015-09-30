@@ -9,6 +9,7 @@ var option4 = 0;
 var option5 = 0;
 var option0 = 0;
 var tagCloudData;
+var alcString, diabetusString, lactoseString;
 
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
@@ -68,7 +69,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
 
-	    console.log(doc.vegetarian);
+	    //console.log(doc.vegetarian);
 
 
 
@@ -101,11 +102,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-	   // var antiAlk = ();
+	   	var antiAlk = (doc.antialc[0]);
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
 
-	    console.log(doc.antialc[0])
+
 	    
 	    //STRINGS
 	    	//duration
@@ -126,11 +127,27 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var instructionString = "leider keine Anleitung vorhanden";
 	    }
-	    
-		
 
-	    
 
+	   //alk
+	    if(antiAlk){
+	    	alcString = "Alkohol: Nein";
+	    }else{
+	    	alcString = "Alkohol: Ja";
+	    }
+	    //diabetus
+	    if(diabetus){
+	    	diabetusString = "Diabetiker: Ja";
+	    }else{
+	    	diabetusString = "Diabetiker: Nein";
+	    }
+	    	//lactose
+	   	if(lactose){
+	    	lactoseString = "Laktose: Ja";
+	    }else{
+	    	lactoseString = "Laktose: Nein";
+	    }
+	    
 	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
 
@@ -141,27 +158,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    	
 
-	    
-	    	//alk
-	    	var alcString = "";
-	    if(doc.antialc[0]){
-	    	alcString = "Alkohol: Nein";
-	    }else{
-	    	alcString = "Alkohol: Ja";
-	    }
-	    	//diabetus
-	    if(diabetus){
-	    	var diabetusString = "Diabetiker: Ja";
-	    }else{
-	    	var diabetusString = "Diabetiker: Nein";
-	    }
-	    	//lactose
-	   	if(lactose){
-	    	var lactoseString = "Laktose: Ja";
-	    }else{
-	    	var lactoseString = "Laktose: Nein";
-	    }
 
+	    console.log(alcString)
+	    console.log(doc.antialc[0])
 
 
 	    //HTML ELEMENTS
