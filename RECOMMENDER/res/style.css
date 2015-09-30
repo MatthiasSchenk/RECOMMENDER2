@@ -155,7 +155,10 @@
 .expandRecipe {
     height: 200px;
     background-color: #146186;
+    margin-top:  20px;
 }
+
+/* */
 
 .picInResult {
     width: 200px;
