@@ -7,6 +7,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	
 	afterRequest: function () {
+
+	// DATEN ------------------------------------------------------
 	docArray = [];
 
 	  $(this.target).empty();
@@ -16,8 +18,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	   	counter++;
 	  }
 	    docArray.sort(sortRecipes);
+	    docArray = sortTime();
 
-	 $("#range").on("input change", function() { 
+	 $("#range").on("change", function() { 
        
  		selectedTime = document.getElementById("range").value;
  		 console.log(selectedTime)
@@ -28,12 +31,20 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = this.manager.response.response.docs[i];
 	    //console.log(doc);
 
+
+	    // ANZEIGE ----------------------------------------------------------
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
 	    //DATA
-	    var title = doc.title[0];
+	    if(doc.title[0].length > 40){
+	    	var title = doc.title[0].substring(0,37)+"...";
+	    }else{
+	   		var title = doc.title[0].substring(0,40);
+	    }
+
 
 	    var rating = doc.userrating[0] / 10;
+	    var numuserratings = doc.numuserratings[0];
 
 
 	    var duration = doc.recipetime[0];
@@ -63,7 +74,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }
 	    	//rating
 	   	if(rating > 0){
-	    	var ratingString = "Rating: "+rating;
+	    	var ratingString = "Rating: "+rating+" ("+numuserratings+" mal bew.)";
 	    }else{
 	    	var ratingString = "Rating: keine Angabe";
 	    }
@@ -159,23 +170,15 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 });
 
-	var checkTime = function(){
-		var temp = [];
-		for(var o = 0; o < docArray.length; o++){
-			if(docArray[o].recipetime[0] <= time){
-				console.log(docArray[o].recipetime[0]);
-				temp.push(docArray[o]);
-
+	var sortTime = function () {
+		var result = [];
+		for (var i = 0; i < docArray.length; i++) {
+			if(docArray[i].recipetime[0] < selectedTime){
+				result.push(docArray[i]);
 			}
-
-		}
-		return temp;
-
+		};
+		return result;
 	}
-
-
-
-
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
