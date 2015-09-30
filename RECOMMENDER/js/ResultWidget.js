@@ -39,7 +39,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsLactose();
 	    }
 	    if(option3 == 1){
-	    	console.log("GOING TO DELETE")
 	    	docArray = filterOptionsVege();
 	    }
 	    if(option4 == 1){
@@ -68,6 +67,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
+	    console.log(doc.diabetus);
 
 	    //console.log(doc.vegetarian);
 
@@ -512,7 +512,7 @@ function changeHiddenInput (objDropDown){
 			if(chosenArray[i] == 0){
 				console.log("deleting alc recipes");
 				for (var j = 0; j < docArray.length; j++) {
-					if(docArray[j].antialc == "true	"){
+					if(docArray[j].antialc == "true"){
 						arr.push(docArray[j]);
 					}
 				};
@@ -524,7 +524,7 @@ function changeHiddenInput (objDropDown){
 	var filterOptionsGluten = function(){
 		var arr = [];
 		for (var i = 0; i < chosenArray.length; i++) {
-			if(chosenArray[i] == 0){
+			if(chosenArray[i] == 1){
 				console.log("deleting gluten recipes");
 				for (var j = 0; j < docArray.length; j++) {
 					if(docArray[j].gluten == "false"){
@@ -539,7 +539,7 @@ function changeHiddenInput (objDropDown){
 	var filterOptionsLactose = function(){
 		var arr = [];
 		for (var i = 0; i < chosenArray.length; i++) {
-			if(chosenArray[i] == 0){
+			if(chosenArray[i] == 2){
 				console.log("deleting lactose recipes");
 				for (var j = 0; j < docArray.length; j++) {
 					if(docArray[j].lactose == "true"){
@@ -553,7 +553,7 @@ function changeHiddenInput (objDropDown){
 	var filterOptionsVege = function(){
 		var arr = [];
 		for (var i = 0; i < chosenArray.length; i++) {
-			if(chosenArray[i] == 0){
+			if(chosenArray[i] == 3){
 				console.log("deleting vege recipes");
 				for (var j = 0; j < docArray.length; j++) {
 					if(docArray[j].vegetarian == "true"){
@@ -568,8 +568,8 @@ function changeHiddenInput (objDropDown){
 	var filterOptionsSport = function(){
 		var arr = [];
 		for (var i = 0; i < chosenArray.length; i++) {
-			if(chosenArray[i] == 0){
-				console.log("deleting alc recipes");
+			if(chosenArray[i] == 4){
+				console.log("deleting sport recipes");
 				for (var j = 0; j < docArray.length; j++) {
 					if(docArray[j].sportsman == "true"){
 						arr.push(docArray[j]);
@@ -583,8 +583,8 @@ function changeHiddenInput (objDropDown){
 	var filterOptionsSugar = function(){
 		var arr = [];
 		for (var i = 0; i < chosenArray.length; i++) {
-			if(chosenArray[i] == 0){
-				console.log("deleting alc recipes");
+			if(chosenArray[i] == 5){
+				console.log("deleting sugar recipes");
 				for (var j = 0; j < docArray.length; j++) {
 					if(docArray[j].diabetus == "true"){
 						arr.push(docArray[j]);
