@@ -239,6 +239,33 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	var createTagCloudData = function () {
+		var numShownTags; 
+		var allIngredients = [];
+		var counters;
+		var summedIngredients;
+
+		if(docArray.length > 10){
+			numShownTags = 10;
+		}else{
+			numShownTags = docArray.length;
+		}
+		
+		for (var i = 0; i < docArray.length; i++) {
+			for (var j = 0; j < docArray[i].ingredientname.length; j++) {
+				allIngredients.push(docArray[i].ingredientname[j])
+			};
+		};
+		console.log(allIngredients)
+
+		for (var i = 0; i < allIngredients.length; i++) {
+			
+		};
+	}
+
+>>>>>>> origin/master
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
         var selected = selector.options[selector.selectedIndex].value;
