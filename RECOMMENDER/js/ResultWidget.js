@@ -39,7 +39,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var duration = doc.recipetime[0];
 
 	    var ingredients = doc.ingredientname;
-	    var ingredient = "Zutaten: ";
+	    var ingredient = "Zutaten: <br>";
 	    var portionvalues = doc.portionvalue;
 	    var portiontypes = doc.portiontype;
 
@@ -69,7 +69,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }
 	    	//instructions
 	    if(instructions[0] != ""){
-	    	var instructionString = "Anleitung: "+instructions;
+	    	var instructionString = "Anleitung: <br>" +instructions;
 	    }else{
 	    	var instructionString = "leider keine Anleitung vorhanden";
 	    }
@@ -81,7 +81,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
 
-	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] +"";
+	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] + "," +"<br>";
 
 	    }
 
@@ -137,7 +137,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
 		$("#resultListArea").append($div2);
 		//ZUTATEN
-		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", text: ingredient});
+		var $ingredients = $("<p>", {id: "recipeIngredients", class: "recipeListIngredients scroll2", html: ingredient});
 		$($div2).append($ingredients);
 		//PORTIONVALUES
 		var $portionvalues = $("<p>", {id: "recipePortionValues", class: "recipeListPortionValues", text: portionvalues});
@@ -146,13 +146,14 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		var $portiontypes = $("<p>", {id: "recipePortionTypes", class: "recipeListPortionTypes", text: portiontypes});
 		$($div2).append($portiontypes);
 		//INSTRUCTIONS
-		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", text: instructionString});
+		var $instructions = $("<p>", {id: "recipeInstructions", class: "recipeListInstructions scroll", html: instructionString});
+		
 		$($div2).append($instructions);
-
 	  }
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
 	},
+
 
 
 
@@ -171,6 +172,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		return temp;
 
 	}
+
 
 
 
