@@ -28,7 +28,7 @@ App.Controller = (function() {
         //Listeners
 
         $( "#searchBarButton" ).click(function() {
-
+            
             onResultPage = true;
 
             if(onResultPage){
