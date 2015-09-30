@@ -66,7 +66,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-
+	    console.log(doc);
 
 
 
@@ -307,9 +307,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
         }
 
         if(selected == "Meistbewertet"){
-        	if (thisObject.numuserratings < thatObject.numuserratings){
+        	var thisnumuser = parseInt(thisObject.numuserratings);
+        	var thatnumuser = parseInt(thatObject.numuserratings);
+        	if (thisnumuser < thatnumuser){
 			return 1;
-			}else if (thisObject.numuserratings > thatObject.numuserratings){
+			}else if (thisnumuser > thatnumuser){
 				return -1;
 			}
 				return 0;
@@ -507,7 +509,7 @@ function changeHiddenInput (objDropDown){
 			if(chosenArray[i] == 0){
 				console.log("deleting alc recipes");
 				for (var j = 0; j < docArray.length; j++) {
-					if(docArray[j].antialc == "false"){
+					if(docArray[j].antialc == "true	"){
 						arr.push(docArray[j]);
 					}
 				};
