@@ -74,10 +74,15 @@ App.Controller = (function() {
             onResultPage = false;
         });
 
-        $('#recipientSelection').on('input', function() { 
-            //var selected = $(this).chosen().val() // get the current value of the input field.
-            //console.log(selected);
+        /*
+        $("#recipientSelection").chosen().change(function(e, params){
+             console.log(params.selected)
         });
+        */
+
+
+
+
 
 
 
