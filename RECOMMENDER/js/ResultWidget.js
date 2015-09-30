@@ -38,6 +38,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsLactose();
 	    }
 	    if(option3 == 1){
+	    	console.log("GOING TO DELETE")
 	    	docArray = filterOptionsVege();
 	    }
 	    if(option4 == 1){
@@ -66,7 +67,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-	    console.log(doc);
+
+	    console.log(doc.vegetarian);
+
 
 
 
@@ -98,11 +101,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-	    var antiAlk = (doc.antialc[0]);
+	   // var antiAlk = ();
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
 
-	    console.log(doc.diabetus)
+	    console.log(doc.antialc[0])
 	    
 	    //STRINGS
 	    	//duration
@@ -140,10 +143,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    
 	    	//alk
-	    if(antiAlk){
-	    	var alcString = "Alkohol: Nein";
+	    	var alcString = "";
+	    if(doc.antialc[0]){
+	    	alcString = "Alkohol: Nein";
 	    }else{
-	    	var alcString = "Alkohol: Ja";
+	    	alcString = "Alkohol: Ja";
 	    }
 	    	//diabetus
 	    if(diabetus){
