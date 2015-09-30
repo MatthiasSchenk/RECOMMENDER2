@@ -68,6 +68,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    var doc = docArray[m];
 	    console.log(doc.diabetus);
 
+	    console.log(doc.vegetarian);
+
+
 
 
 
@@ -98,9 +101,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-	    var antiAlk = (doc.antialc[0]);
+	   // var antiAlk = ();
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
+
+	    console.log(doc.antialc[0])
 	    
 	    //STRINGS
 	    	//duration
@@ -138,10 +143,11 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	    
 	    	//alk
-	    if(antiAlk){
-	    	var alcString = "Alkohol: Nein";
+	    	var alcString = "";
+	    if(doc.antialc[0]){
+	    	alcString = "Alkohol: Nein";
 	    }else{
-	    	var alcString = "Alkohol: Ja";
+	    	alcString = "Alkohol: Ja";
 	    }
 	    	//diabetus
 	    if(diabetus){
