@@ -74,19 +74,11 @@ App.Controller = (function() {
             onResultPage = false;
         });
 
-<<<<<<< HEAD
-=======
         /*
         $("#recipientSelection").chosen().change(function(e, params){
              console.log(params.selected)
         });
         */
-
-
-
-
-
->>>>>>> origin/master
 
 
         //Methods

@@ -47,12 +47,12 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsSugar();
 	    }
 	 $("#range").on("input change", function() { 
-	    docArray = sortTime();
+	    docArray = sortTime();});
 
 	 $("#range").on("change", function() { 
        
  		selectedTime = document.getElementById("range").value;
- 		 console.log(selectedTime)
+ 		 console.log(selectedTime);
     });
 	    
 	  	counter++;
@@ -140,21 +140,21 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    
 	    	//alk
 	    if(alk){
-	    	var alcString = "Alkohol: Ja"
+	    	var alcString = "Alkohol: Ja";
 	    }else{
-	    	var alcString = "Alkohol: Nein"
+	    	var alcString = "Alkohol: Nein";
 	    }
 	    	//diabetus
 	    if(diabetus){
-	    	var diabetusString = "Diabetiker: Ja"
+	    	var diabetusString = "Diabetiker: Ja";
 	    }else{
-	    	var diabetusString = "Diabetiker: Nein"
+	    	var diabetusString = "Diabetiker: Nein";
 	    }
 	    	//lactose
 	   	if(lactose){
-	    	var lactoseString = "Laktose: Ja"
+	    	var lactoseString = "Laktose: Ja";
 	    }else{
-	    	var lactoseString = "Laktose: Nein"
+	    	var lactoseString = "Laktose: Nein";
 	    }
 
 
@@ -201,12 +201,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  }
 	  expandClickedRecipe();
 	  console.log(counter + " Ergebnisse");
-	},
-
-
-
-
+	}
 });
+})(jQuery);
 
 
 	var checkFilterOptions = function(){
@@ -217,7 +214,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 				var index = i+1;
 				var chosen = index.toString();
 				var selected = document.getElementById("option"+chosen).text;
-			};
+			}
 		}
 	}
 
@@ -228,6 +225,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 			if(docArray[o].recipetime[0] <= time){
 				console.log(docArray[o].recipetime[0]);
 				temp.push(docArray[o]);
+			}
+		}
+	}
 
 	var sortTime = function () {
 		var result = [];
@@ -239,8 +239,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		return result;
 	}
 
-<<<<<<< HEAD
-=======
 	var createTagCloudData = function () {
 		var numShownTags; 
 		var allIngredients = [];
@@ -265,12 +263,6 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		};
 	}
 
->>>>>>> origin/master
-	var sortRecipes = function(thisObject, thatObject){
-		var selector = document.getElementById("selector");
-        var selected = selector.options[selector.selectedIndex].value;
-
-	}
 
 	var sortRecipes = function(thisObject, thatObject){
 		var selector = document.getElementById("selector");
@@ -333,7 +325,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		$(this).next(".expandRecipe").children().slideToggle(600);
 	  		
 	  		updateTagCloud($(this).find(".recipeListTitle").text());
-	  	})
+	  	});
+	  }
 
 	  var updateTagCloud = function  (recipeTitle) {
 	  	var ingrList = [];
@@ -342,8 +335,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  		if(docArray[i].title[0] == recipeTitle){
 	  			ingrList = docArray[i].ingredientname;
 	  		}
-	  	};
-
+	  	}
 	  	compareIngredientLists(ingrList, recipeTitle);
 	  }
 
@@ -356,9 +348,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	  							interestingRecipes.push(docArray[j].title[0])
 	  						}
 	  						
-	  				};
-	  			};
-	  		};
+	  				}
+	  			}
+	  		}
 
 	  		interestingRecipes.sort();
 
@@ -401,10 +393,9 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	  }
 
-	  }
+	  
 
 	    	  
-})(jQuery);
 
 function changeHiddenInput (objDropDown){
 		document.getElementById("hiddenInput").value = objDropDown.value;
