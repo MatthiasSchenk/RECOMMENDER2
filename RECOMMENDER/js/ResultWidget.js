@@ -38,6 +38,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    	docArray = filterOptionsLactose();
 	    }
 	    if(option3 == 1){
+	    	console.log("GOING TO DELETE")
 	    	docArray = filterOptionsVege();
 	    }
 	    if(option4 == 1){
