@@ -91,26 +91,25 @@
 }
 
 #filterArea {
-    width: 18%;
-    height: 300px;
-    position: absolute;
-    right: 0;
+    margin-top: -8px;
     visibility: hidden;
     font-family: monospace;
-    background-color: #0A4C6C;    
+    background-color: #0A4C6C;
+    width: 80%; 
 }
 
 .TagCloudResultPage {
     width: 18%;
     height: 300px;
     position: absolute;
-    right: 0;
-    top: 100%;
+    margin-top: -191px;
     visibility: hidden;
     font-family: monospace;
     background-color: #0A4C6C;
     border: groove;
     border-color: black;
+    right: 10px;
+    border-radius: 7px;
 
 }
 

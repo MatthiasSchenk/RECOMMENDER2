@@ -1,6 +1,8 @@
 var docArray = [];
 var counter = 0;
 var selectedTime = 1000;
+var tagCloudData;
+
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
@@ -33,9 +35,16 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 	    // ANZEIGE ----------------------------------------------------------
+
+	   	createTagCloudData();
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-	    //DATA
+
+
+
+
+
+	    //variablen
 	    if(doc.title[0].length > 40){
 	    	var title = doc.title[0].substring(0,37)+"...";
 	    }else{
@@ -178,6 +187,24 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 			}
 		};
 		return result;
+	}
+
+	var createTagCloudData = function () {
+		var numShownTags; 
+		var allIngredients = [];
+
+		if(docArray.length > 10){
+			numShownTags = 10;
+		}else{
+			numShownTags = docArray.length;
+		}
+		
+		for (var i = 0; i < docArray.length; i++) {
+			for (var j = 0; j < docArray[i].ingredientname.length; j++) {
+				allIngredients.push(docArray[i].ingredientname[j])
+			};
+		};
+		console.log(allIngredients)
 	}
 
 	var sortRecipes = function(thisObject, thatObject){
