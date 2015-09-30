@@ -548,7 +548,7 @@ function changeHiddenInput (objDropDown){
 			if(chosenArray[i] == 1){
 				console.log("deleting gluten recipes");
 				for (var j = 0; j < docArray.length; j++) {
-					if(docArray[j].gluten == "false"){
+					if(docArray[j].gluten == "true"){
 						arr.push(docArray[j]);
 					}
 				};
@@ -607,7 +607,7 @@ function changeHiddenInput (objDropDown){
 			if(chosenArray[i] == 5){
 				console.log("deleting sugar recipes");
 				for (var j = 0; j < docArray.length; j++) {
-					if(docArray[j].diabetus == "true"){
+					if(docArray[j].diabetus == "false"){
 						arr.push(docArray[j]);
 					}
 				};
