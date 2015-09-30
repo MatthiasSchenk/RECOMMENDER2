@@ -9,7 +9,7 @@ var option4 = 0;
 var option5 = 0;
 var option0 = 0;
 var tagCloudData;
-var alcString, diabetusString, lactoseString;
+var  diabetusString, lactoseString;
 
 (function ($) {
 AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
@@ -67,7 +67,7 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 	 	for(var m = 0; m < docArray.length; m++){
 	    var doc = docArray[m];
-	    console.log(doc.diabetus);
+	    //console.log(doc.diabetus);
 
 	    //console.log(doc.vegetarian);
 
@@ -102,9 +102,12 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 
 
 
-	   	var antiAlk = (doc.antialc[0]);
+	   	var antiAlk = doc.antialc[0];
 	    var diabetus = doc.diabetus[0];
 	    var lactose = doc.lactose[0];
+	    var gluten = doc.gluten[0];
+	    var vegetarian = doc.vegetarian[0];
+	    var sportsman = doc.sportsman[0];
 
 
 	    
@@ -127,40 +130,46 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	    }else{
 	    	var instructionString = "leider keine Anleitung vorhanden";
 	    }
-
-
 	   //alk
-	    if(antiAlk){
-	    	alcString = "Alkohol: Nein";
+	    if(antiAlk == "true"){
+	    	var alcString = "Alkohol: Nein";
 	    }else{
-	    	alcString = "Alkohol: Ja";
+	    	var alcString = "Alkohol: Ja";
+	    }
+	    //gluten
+	   	if(gluten == "true"){
+	    	var glutenString = "Gluten: Ja";
+	    }else{
+	    	var glutenString = "Gluten: Nein";
+	    }
+	    //vegetarian
+	   	if(vegetarian == "true"){
+	    	var vegetarianString = "Vegetarisch: Ja";
+	    }else{
+	    	var vegetarianString = "Vegetarisch: Nein";
+	    }
+	    //sportsman
+	   	if(sportsman == "true"){
+	    	var sportsmanString = "Sportlich: Ja";
+	    }else{
+	    	var sportsmanString = "Sportlich: Nein";
 	    }
 	    //diabetus
-	    if(diabetus){
+	    if(diabetus == "true"){
 	    	diabetusString = "Diabetiker: Ja";
 	    }else{
 	    	diabetusString = "Diabetiker: Nein";
 	    }
 	    	//lactose
-	   	if(lactose){
+	   	if(lactose == "true"){
 	    	lactoseString = "Laktose: Ja";
 	    }else{
 	    	lactoseString = "Laktose: Nein";
 	    }
-	    
 	    	//ingredients
 	    for(var j=0; j<ingredients.length; j++){
-
 	    	ingredient = ingredient + " " + portionvalues[j] + " " + portiontypes[j] +" "+ ingredients[j] + "," +"<br>";
-
 	    }
-
-
-	    	
-
-
-	    console.log(alcString)
-	    console.log(doc.antialc[0])
 
 
 	    //HTML ELEMENTS
@@ -185,6 +194,18 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 		//LAKTOSE
 		var $lactose = $("<p>", {id: "recipeLactose", class: "recipeListLactose", text: lactoseString});
 		$($div).append($lactose);
+		//GLUTEN
+		var $gluten = $("<p>", {id: "recipeGluten", class: "recipeListGluten", text: glutenString});
+		$($div).append($gluten);
+		//VEGETARIAN
+		var $vegetarian = $("<p>", {id: "recipeVegetarian", class: "recipeListVegetarian", text: vegetarianString});
+		$($div).append($vegetarian);
+		//SPORTSMAN
+		var $sportsman = $("<p>", {id: "recipeSportsman", class: "recipeListSportsman", text: sportsmanString});
+		$($div).append($sportsman);
+
+
+
 		
 		//EXPANDED DIV
 		var $div2 = $('<div>', {class: "expandRecipe", value: "REZEPT"});
