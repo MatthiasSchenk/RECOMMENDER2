@@ -18,6 +18,8 @@ AjaxSolr.ResultWidget = AjaxSolr.AbstractWidget.extend({
 	
 	afterRequest: function () {
 
+		counter = 0;
+
 	// DATEN ------------------------------------------------------
 	docArray = [];
 
