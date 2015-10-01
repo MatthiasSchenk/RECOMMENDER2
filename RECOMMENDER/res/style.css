@@ -134,6 +134,11 @@
     visibility: hidden;
 }
 
+#load {
+    margin-top: 20px;
+    text-align: center;
+}
+
 .result {
     height: 155px;
     background-color: #D9853B;

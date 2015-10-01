@@ -47,6 +47,8 @@ App.Controller = (function() {
             $("#filterArea").css("visibility", "visible");
             $("#mostSearchedArea2").css("visibility", "visible");
             $("#resultListArea").css("visibility", "visible");
+
+
         });
 
         $( "#searchBar" ).keypress(function( event ) {
@@ -55,7 +57,18 @@ App.Controller = (function() {
                 $( "#searchBarButton" ).trigger("click");
 
         }
+
+        
+
         });
+
+
+        var t = setTimeout (function() {
+                $("#resultListArea").show();
+                $("#load").hide();
+                    }, 2000);
+
+
 
         $( "#tagCloud").on( "tagClicked", function(event, tag) {
             clickedTag = tag;
